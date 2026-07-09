@@ -1,59 +1,16 @@
-# SheRise AI
+# React + Vite
 
-> AI-Powered Career Intelligence Platform for Women in STEM
+This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
 
-## About
+Currently, two official plugins are available:
 
-SheRise AI is an AI-powered career intelligence platform designed to empower women by providing personalized career roadmaps, skill-gap analysis, internship recommendations, interview preparation, and mentorship support.
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-Built for **Vibe2Vision 2026**, SheRise AI bridges the gap between ambition and opportunity through data-driven career guidance and AI-powered insights.
+## React Compiler
 
----
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Problem Statement
+## Expanding the Oxlint configuration
 
-Many women face challenges in accessing personalized career guidance, relevant learning resources, mentorship opportunities, and career advancement resources.
-
-SheRise AI helps users identify suitable career paths, understand skill gaps, and discover opportunities through intelligent recommendations.
-
----
-
-## Key Features
-
-- AI-Powered Career Roadmap
-- Skill Gap Analysis
-- Resume Evaluation
-- Internship & Hackathon Recommendations
-- Scholarship Discovery
-- AI Mock Interviews
-- Career Readiness Assessment
-- Personalized Learning Plans
-
----
-
-## Technology Stack
-
-- React
-- Firebase
-- Gemini API
-- JavaScript
-- HTML5
-- CSS3
-
----
-
-## Project Status
-
-Under Development (Hackathon Build)
-
----
-
-## Team
-
-**YuktiNexus**
-
----
-
-## License
-
-This project is licensed under the MIT License.
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.

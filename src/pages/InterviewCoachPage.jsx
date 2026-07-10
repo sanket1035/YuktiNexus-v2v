@@ -1,23 +1,17 @@
-// SheRise AI - AI Interview Coach Page (Module 4)
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Sparkles,
   Mic,
-  Award,
-  BookOpen,
   ArrowRight,
   ArrowLeft,
-  Info,
   Calendar,
   AlertCircle,
   CheckCircle,
   HelpCircle,
   RotateCcw,
   Download,
-  Check,
   ChevronRight,
-  TrendingUp,
   Target,
   Zap,
   Play
@@ -559,7 +553,7 @@ export const InterviewCoachPage = () => {
                         [currentIdx]: e.target.value
                       });
                     }}
-                    className="w-full font-sans text-sm rounded-xl py-3 px-4 bg-luxury-cream-50/70 border text-luxury-purple-950 border-luxury-cream-200 dark:bg-luxury-purple-900/30 dark:border-luxury-purple-800/80 dark:text-luxury-cream-50 placeholder-luxury-purple-400/65 focus:outline-none focus:border-luxury-purple-450"
+                    className="w-full font-sans text-sm rounded-xl py-3 px-4 bg-luxury-cream-50/70 border text-luxury-purple-950 border-luxury-cream-200 dark:bg-luxury-purple-900/30 dark:border-luxury-purple-800/80 dark:text-luxury-cream-50 placeholder-luxury-purple-400/65 focus:outline-none focus:border-luxury-purple-400"
                   />
                 </div>
 
@@ -714,7 +708,7 @@ export const InterviewCoachPage = () => {
                             </div>
                           ))}
                           {evaluations[currentIdx].suggestions.slice(0, 2).map((sug, idx) => (
-                            <div key={idx} className="flex gap-2 items-start text-[10.5px] font-semibold text-luxury-purple-855 dark:text-luxury-cream-150/75">
+                            <div key={idx} className="flex gap-2 items-start text-[10.5px] font-semibold text-luxury-purple-800 dark:text-luxury-cream-150/75">
                               <Zap size={12} className="text-luxury-peach shrink-0 mt-0.5" />
                               <span>{sug}</span>
                             </div>
@@ -845,7 +839,7 @@ export const InterviewCoachPage = () => {
 
                 {/* Focus skills chips */}
                 <div className="flex flex-col gap-3">
-                  <span className="text-[10px] font-extrabold uppercase tracking-widest text-luxury-purple-405 block">
+                  <span className="text-[10px] font-extrabold uppercase tracking-widest text-luxury-purple-400 block">
                     Target Weak Skills to Review
                   </span>
                   <div className="flex flex-wrap gap-2">

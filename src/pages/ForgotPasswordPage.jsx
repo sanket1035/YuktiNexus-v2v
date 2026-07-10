@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { Mail, ArrowLeft, Send, CheckCircle, AlertCircle, Sparkles } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { Mail, ArrowLeft, Send, CheckCircle, AlertCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../hooks/useAuth';
 import { Input } from '../components/common/Input';

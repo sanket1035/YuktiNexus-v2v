@@ -10,7 +10,6 @@ import {
   BarChart2,
   ChevronRight,
   TrendingUp,
-  Award,
   Users,
   Lock
 } from 'lucide-react';
@@ -178,7 +177,7 @@ export const LandingPage = () => {
             viewport={{ once: true, margin: '-100px' }}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
-            {modules.map((mod, idx) => (
+            {modules.map((mod) => (
               <motion.div
                 key={mod.title}
                 variants={itemVariants}
@@ -262,7 +261,7 @@ export const LandingPage = () => {
               { step: '02', title: 'Upload Resume', desc: 'Our AI analyzes your skills, experiences, and assigns a benchmark career readiness score.', icon: TrendingUp },
               { step: '03', title: 'Skill Gap & Roadmap', desc: 'Receive a personalized, step-by-step learning journey to bridge core missing gaps.', icon: Map },
               { step: '04', title: 'Mock Interviews', desc: 'Prepare with AI-driven voice feedback, confidence grading, and customized HR prompts.', icon: Mic },
-            ].map((item, idx) => (
+            ].map((item) => (
               <div key={item.step} className="bg-white dark:bg-luxury-purple-900 border border-luxury-cream-200 dark:border-luxury-purple-850 p-6 rounded-2xl text-left relative z-10 flex flex-col justify-between">
                 <div>
                   <div className="flex justify-between items-center mb-6">
@@ -300,21 +299,21 @@ export const LandingPage = () => {
                 quote: "SheRise AI is exactly what I needed. Having a dedicated roadmap that points out my exact skill-gaps and guides me with recommendations is a game-changer.",
                 name: "Riya Sen",
                 role: "Computer Science Graduate, IIT",
-                img: "https://api.dicebear.com/7.x/adventurer/svg?seed=Riya"
+                img: "https://api.dicebear.com/7.x/avataaars/svg?seed=Riya&clothing=blazerAndShirt"
               },
               {
                 quote: "Mock interviews are usually stressful, but the friendly, constructive AI coach makes it easy to practice, evaluate body language, and track confidence levels.",
                 name: "Sanya Roy",
                 role: "Software Engineering Intern",
-                img: "https://api.dicebear.com/7.x/adventurer/svg?seed=Sanya"
+                img: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sanya&clothing=blazerAndShirt"
               },
               {
                 quote: "The opportunity finder aggregates STEM scholarships and hackathons that I didn't even know existed. It saves me hours of manual tracking.",
                 name: "Meera Nair",
                 role: "Bio-Technology Researcher",
-                img: "https://api.dicebear.com/7.x/adventurer/svg?seed=Meera"
+                img: "https://api.dicebear.com/7.x/avataaars/svg?seed=Meera&clothing=blazerAndShirt"
               }
-            ].map((test, index) => (
+            ].map((test) => (
               <div key={test.name} className="p-8 rounded-3xl border border-luxury-cream-200 dark:border-luxury-purple-900 bg-luxury-cream-50/20 dark:bg-luxury-purple-900/10 text-left flex flex-col justify-between">
                 <p className="text-sm font-medium italic leading-relaxed text-luxury-purple-850 dark:text-luxury-cream-100/80 mb-6">
                   "{test.quote}"

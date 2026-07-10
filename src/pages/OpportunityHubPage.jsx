@@ -1,5 +1,4 @@
-// SheRise AI - Opportunity Hub Page (Module 3)
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Sparkles,
@@ -72,7 +71,7 @@ export const OpportunityHubPage = () => {
   };
 
   // Fetch opportunities on load or when user profile updates
-  const fetchOpportunities = async () => {
+  const fetchOpportunities = useCallback(async () => {
     setError('');
     setLoading(true);
     try {
@@ -88,11 +87,11 @@ export const OpportunityHubPage = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [userProfile]);
 
   useEffect(() => {
     fetchOpportunities();
-  }, [userProfile]);
+  }, [fetchOpportunities]);
 
   // Handle Search, Filters, and Sorting logic locally
   const filteredOpportunities = opportunities
@@ -358,7 +357,7 @@ export const OpportunityHubPage = () => {
 
         {/* Category Horizontal Filter Tags */}
         <div className="border-t border-luxury-cream-100 dark:border-luxury-purple-900/75 pt-4">
-          <span className="text-[10px] font-extrabold uppercase tracking-wider text-luxury-purple-650/80 dark:text-luxury-purple-355/80 block mb-2.5">
+          <span className="text-[10px] font-extrabold uppercase tracking-wider text-luxury-purple-600/80 dark:text-luxury-purple-300/80 block mb-2.5">
             Filter by STEM Category
           </span>
           <div className="flex flex-wrap gap-1.5 overflow-x-auto pb-1">
@@ -486,7 +485,7 @@ export const OpportunityHubPage = () => {
                 </div>
 
                 {/* Brief description */}
-                <p className="text-xs font-semibold leading-relaxed text-luxury-purple-855 dark:text-luxury-cream-150/65 line-clamp-3 font-sans relative z-10">
+                <p className="text-xs font-semibold leading-relaxed text-luxury-purple-800 dark:text-luxury-cream-150/65 line-clamp-3 font-sans relative z-10">
                   {opp.description}
                 </p>
 
@@ -516,7 +515,7 @@ export const OpportunityHubPage = () => {
                     className={`p-2.5 rounded-xl border transition-colors flex items-center justify-center cursor-pointer shrink-0 ${
                       savedIds.includes(opp.id)
                         ? 'bg-luxury-purple-100 text-luxury-purple-700 border-luxury-purple-300 dark:bg-luxury-purple-900 dark:text-luxury-peach dark:border-luxury-purple-800'
-                        : 'bg-white border-luxury-cream-300 text-luxury-purple-955 hover:bg-luxury-cream-50 dark:bg-luxury-purple-900/60 dark:border-luxury-purple-850 dark:text-white'
+                        : 'bg-white border-luxury-cream-300 text-luxury-purple-950 hover:bg-luxury-cream-50 dark:bg-luxury-purple-900/60 dark:border-luxury-purple-800 dark:text-white'
                     }`}
                     title={savedIds.includes(opp.id) ? 'Remove Bookmark' : 'Bookmark Opportunity'}
                   >

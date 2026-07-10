@@ -760,7 +760,7 @@ export const CareerIntelligencePage = () => {
                           {analysisResult.careerConfidenceScore}%
                         </span>
                       </div>
-                      <span className="text-[10px] font-bold text-luxury-purple-905 dark:text-luxury-cream-100">
+                      <span className="text-[10px] font-bold text-luxury-purple-900 dark:text-luxury-cream-100">
                         Career Confidence
                       </span>
                     </div>
@@ -796,7 +796,7 @@ export const CareerIntelligencePage = () => {
                           {analysisResult.atsResumeScore}%
                         </span>
                       </div>
-                      <span className="text-[10px] font-bold text-luxury-purple-905 dark:text-luxury-cream-100">
+                      <span className="text-[10px] font-bold text-luxury-purple-900 dark:text-luxury-cream-100">
                         ATS Resume Match
                       </span>
                     </div>

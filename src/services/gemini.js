@@ -579,7 +579,7 @@ Return ONLY raw JSON. Do NOT wrap it in markdown code blocks like \`\`\`json.
 /**
  * Generates a local mock catalog of matching opportunities based on selected tracks and skills.
  */
-const generateLocalMockOpportunities = async (careerGoal, currentSkills, readinessScore = 50) => {
+const generateLocalMockOpportunities = async (careerGoal, currentSkills, _readinessScore = 50) => {
   // Simulate network latency (1 second)
   await new Promise((resolve) => setTimeout(resolve, 1000));
 

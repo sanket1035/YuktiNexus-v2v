@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { Mail, Lock, User, GraduationCap, Compass, Briefcase, ArrowRight, ArrowLeft, Sparkles, Check } from 'lucide-react';
+import { Mail, Lock, User, GraduationCap, Compass, Briefcase, ArrowRight, ArrowLeft, Check } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../hooks/useAuth';
 import { Input } from '../components/common/Input';

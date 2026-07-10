@@ -5,6 +5,7 @@ import { useAuth } from '../hooks/useAuth';
 import { Input } from '../components/common/Input';
 import { Button } from '../components/common/Button';
 import { motion, AnimatePresence } from 'framer-motion';
+import { formatProfileName } from '../utils/validation';
 
 export const ProfileSetupPage = () => {
   const { userProfile, updateProfile } = useAuth();
@@ -16,7 +17,7 @@ export const ProfileSetupPage = () => {
 
   // Setup Form States
   const [selectedAvatar, setSelectedAvatar] = useState(
-    userProfile?.photoURL || `https://api.dicebear.com/7.x/adventurer/svg?seed=Priya`
+    userProfile?.photoURL || `https://api.dicebear.com/7.x/avataaars/svg?seed=SoftwareEngineer&top=bob&hairColor=black&clothing=blazerAndShirt&clothingColor=blue01&skin=614335&eyes=default&mouth=smile`
   );
   const [skillInput, setSkillInput] = useState('');
   const [skills, setSkills] = useState(userProfile?.skills || []);
@@ -24,19 +25,19 @@ export const ProfileSetupPage = () => {
   
   // Editable fields (originally filled at registration)
   const [fullName, setFullName] = useState(userProfile?.fullName || '');
-  const [college, setCollege] = useState(userProfile?.college || '');
-  const [degree, setDegree] = useState(userProfile?.degree || 'B.Tech');
-  const [branch, setBranch] = useState(userProfile?.branch || '');
-  const [graduationYear, setGraduationYear] = useState(userProfile?.graduationYear || '');
-  const [careerGoal, setCareerGoal] = useState(userProfile?.careerGoal || '');
+  const college = userProfile?.college || '';
+  const degree = userProfile?.degree || 'B.Tech';
+  const branch = userProfile?.branch || '';
+  const graduationYear = userProfile?.graduationYear || '';
+  const careerGoal = userProfile?.careerGoal || '';
 
   const avatarsList = [
-    'https://api.dicebear.com/7.x/adventurer/svg?seed=Priya',
-    'https://api.dicebear.com/7.x/adventurer/svg?seed=Sarah',
-    'https://api.dicebear.com/7.x/adventurer/svg?seed=Anya',
-    'https://api.dicebear.com/7.x/adventurer/svg?seed=Maya',
-    'https://api.dicebear.com/7.x/adventurer/svg?seed=Neha',
-    'https://api.dicebear.com/7.x/adventurer/svg?seed=Sophia',
+    'https://api.dicebear.com/7.x/avataaars/svg?seed=SoftwareEngineer&top=bob&hairColor=black&clothing=blazerAndShirt&clothingColor=blue01&skin=614335&eyes=default&mouth=smile',
+    'https://api.dicebear.com/7.x/avataaars/svg?seed=AI_Researcher&top=longHair&hairColor=brown&clothing=blazerAndShirt&clothingColor=gray02&skin=ae5c3a&eyes=default&mouth=smile',
+    'https://api.dicebear.com/7.x/avataaars/svg?seed=DataScientist&top=curvy&hairColor=auburn&clothing=blazerAndShirt&clothingColor=black&skin=f8d25c&eyes=default&mouth=smile',
+    'https://api.dicebear.com/7.x/avataaars/svg?seed=CyberSecurity&top=bun&hairColor=black&clothing=blazerAndShirt&clothingColor=heather&skin=ffdbb4&eyes=default&mouth=smile',
+    'https://api.dicebear.com/7.x/avataaars/svg?seed=CloudEngineer&top=straight02&hairColor=black&clothing=blazerAndShirt&clothingColor=pastelOrange&skin=d0a17c&eyes=default&mouth=smile',
+    'https://api.dicebear.com/7.x/avataaars/svg?seed=UIDesigner&top=froBand&hairColor=black&clothing=blazerAndShirt&clothingColor=pastelBlue&skin=fd9841&eyes=default&mouth=smile',
   ];
 
   const handleAddSkill = (e) => {
@@ -181,9 +182,9 @@ export const ProfileSetupPage = () => {
                       key={avatar}
                       type="button"
                       onClick={() => setSelectedAvatar(avatar)}
-                      className={`relative rounded-2xl bg-luxury-cream-50 hover:bg-luxury-cream-100 dark:bg-luxury-purple-900/30 dark:hover:bg-luxury-purple-900/60 border-2 overflow-hidden cursor-pointer transition-all duration-300 p-1 flex items-center justify-center aspect-square ${
+                      className={`relative rounded-2xl bg-luxury-cream-50 hover:bg-luxury-cream-100 dark:bg-luxury-purple-900/30 dark:hover:bg-luxury-purple-900/60 border-2 overflow-hidden cursor-pointer transition-all duration-300 p-1 flex items-center justify-center aspect-square hover:scale-110 ${
                         selectedAvatar === avatar
-                          ? 'border-luxury-purple-700 dark:border-luxury-peach scale-105 shadow-md'
+                          ? 'border-luxury-purple-500 dark:border-luxury-peach scale-105 shadow-[0_0_15px_rgba(245,183,210,0.75)] dark:shadow-[0_0_15px_rgba(192,132,252,0.5)] animate-pulse'
                           : 'border-transparent'
                       }`}
                     >
@@ -317,7 +318,7 @@ export const ProfileSetupPage = () => {
                   Confirm Details Summary:
                 </span>
                 <div className="grid grid-cols-2 gap-y-1.5 text-luxury-purple-800/80 dark:text-luxury-cream-150/70 font-semibold">
-                  <div>Name: <span className="text-luxury-purple-950 dark:text-white">{fullName}</span></div>
+                  <div>Name: <span className="text-luxury-purple-950 dark:text-white">{formatProfileName(fullName)}</span></div>
                   <div>College: <span className="text-luxury-purple-950 dark:text-white">{college}</span></div>
                   <div>Branch: <span className="text-luxury-purple-950 dark:text-white">{branch}</span></div>
                   <div>Goal: <span className="text-luxury-purple-950 dark:text-white">{careerGoal}</span></div>

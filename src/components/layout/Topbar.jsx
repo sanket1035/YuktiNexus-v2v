@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Menu, Bell, User, LogOut, ChevronDown, Award } from 'lucide-react';
+import { Menu, Bell, User, LogOut, ChevronDown } from 'lucide-react';
 import { ThemeToggle } from '../common/ThemeToggle';
 import { useAuth } from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import { formatProfileName } from '../../utils/validation';
 
 export const Topbar = ({ onMenuClick }) => {
   const { userProfile, logout } = useAuth();
@@ -123,7 +124,7 @@ export const Topbar = ({ onMenuClick }) => {
             className="flex items-center gap-1.5 p-1 pr-3 rounded-full hover:bg-luxury-cream-50 dark:hover:bg-luxury-purple-900/40 border border-transparent hover:border-luxury-cream-200 dark:hover:border-luxury-purple-900 cursor-pointer transition-all duration-350 focus:outline-none"
           >
             <img
-              src={userProfile?.photoURL || `https://api.dicebear.com/7.x/adventurer/svg?seed=user`}
+              src={userProfile?.photoURL || `https://api.dicebear.com/7.x/avataaars/svg?seed=user&clothing=blazerAndShirt`}
               alt="Avatar"
               className="w-8 h-8 rounded-full bg-luxury-purple-100 object-cover border border-luxury-purple-300 dark:border-luxury-purple-800"
             />
@@ -143,7 +144,7 @@ export const Topbar = ({ onMenuClick }) => {
                 >
                   <div className="px-3.5 py-3 border-b border-luxury-cream-100 dark:border-luxury-purple-900 text-left mb-1.5">
                     <p className="text-xs font-bold text-luxury-purple-950 dark:text-white truncate">
-                      {userProfile?.fullName || 'STEM Student'}
+                      {formatProfileName(userProfile?.fullName) || 'STEM Student'}
                     </p>
                     <p className="text-[10px] text-luxury-purple-800/60 dark:text-luxury-cream-100/50 truncate mt-0.5">
                       {userProfile?.email}

@@ -72,3 +72,12 @@ export const checkPasswordStrength = (password) => {
 
   return { score, label, color, feedback };
 };
+
+export const formatProfileName = (name) => {
+  if (!name) return '';
+  // Split names that are concatenated without proper spacing (e.g. AditiSenJaneDoe or Aditi SenJane Doe)
+  return name
+    .replace(/([A-Z][a-z]+)/g, ' $1')
+    .replace(/\s+/g, ' ')
+    .trim();
+};

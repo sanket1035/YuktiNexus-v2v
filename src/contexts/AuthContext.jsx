@@ -17,7 +17,7 @@ export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [userProfile, setUserProfile] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [dbMode, setDbMode] = useState(isConfigured ? 'firebase' : 'mock');
+  const dbMode = isConfigured ? 'firebase' : 'mock';
 
   // Load auth state
   useEffect(() => {
@@ -107,7 +107,7 @@ export const AuthProvider = ({ children }) => {
           careerGoal: educationalDetails.careerGoal,
           skills: [],
           dreamCareer: '',
-          photoURL: `https://api.dicebear.com/7.x/adventurer/svg?seed=${encodeURIComponent(educationalDetails.fullName)}`,
+          photoURL: `https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(educationalDetails.fullName)}&clothing=blazerAndShirt`,
           createdAt: new Date().toISOString(),
           updatedAt: new Date().toISOString(),
           isNewUser: true
@@ -154,7 +154,7 @@ export const AuthProvider = ({ children }) => {
             careerGoal: '',
             skills: [],
             dreamCareer: '',
-            photoURL: user.photoURL || `https://api.dicebear.com/7.x/adventurer/svg?seed=${encodeURIComponent(user.displayName || 'User')}`,
+            photoURL: user.photoURL || `https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(user.displayName || 'User')}&clothing=blazerAndShirt`,
             createdAt: new Date().toISOString(),
             updatedAt: new Date().toISOString(),
             isNewUser: true

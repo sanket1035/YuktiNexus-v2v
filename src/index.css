@@ -7,28 +7,41 @@
   --font-sans: 'Plus Jakarta Sans', sans-serif;
   --font-serif: 'Playfair Display', serif;
   
-  --color-primary-dark: #120b24;
-  --color-primary-card-dark: #1a122e;
-  --color-primary-hover-dark: #24193d;
+  --color-primary-dark: #0f0718;
+  --color-primary-card-dark: #1b0f2a;
+  --color-primary-hover-dark: #27153b;
   
-  --color-luxury-purple-950: #0d0819;
-  --color-luxury-purple-900: #120b24;
-  --color-luxury-purple-800: #18102b;
-  --color-luxury-purple-700: #2d1b4e;
-  --color-luxury-purple-600: #442a6b;
-  --color-luxury-purple-500: #623f8c;
-  --color-luxury-purple-400: #835eb0;
-  --color-luxury-purple-300: #a786cf;
-  --color-luxury-purple-200: #caafe6;
-  --color-luxury-purple-100: #ebdff7;
-  --color-luxury-purple-50: #f7f3fc;
+  /* ── Dark purple scale (base palette) ── */
+  --color-luxury-purple-950: #08030d;
+  --color-luxury-purple-900: #0f0718;
+  --color-luxury-purple-850: #180d25;
+  --color-luxury-purple-800: #2c1642;
+  --color-luxury-purple-750: #8b5cf6;
+  --color-luxury-purple-700: #a855f7;
+  --color-luxury-purple-650: #c084fc;
+  --color-luxury-purple-600: #d8b4fe;
+  --color-luxury-purple-550: #e9d5ff;
+  --color-luxury-purple-500: #db2777;
+  --color-luxury-purple-450: #ec4899;
+  --color-luxury-purple-400: #e9b8d0;
+  --color-luxury-purple-350: #f0c8de;
+  --color-luxury-purple-300: #f472b6;
+  --color-luxury-purple-200: #f5b7d2;
+  --color-luxury-purple-150: #f8d0e6;
+  --color-luxury-purple-100: #f8d7e8;
+  --color-luxury-purple-50: #fdf2f8;
 
+  /* ── Cream scale ── */
   --color-luxury-cream-50: #faf8f5;
   --color-luxury-cream-100: #f4efe6;
+  --color-luxury-cream-150: #eee5d4;
   --color-luxury-cream-200: #ebdcc3;
+  --color-luxury-cream-250: #e2cfaf;
   --color-luxury-cream-300: #dec59e;
-  --color-luxury-peach: #fcd1b6;
-  --color-luxury-peach-dark: #f0b58f;
+
+  /* ── Accent ── */
+  --color-luxury-peach: #f5b7d2;
+  --color-luxury-peach-dark: #e9b8d0;
   
   --animate-float: float 6s ease-in-out infinite;
   --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;

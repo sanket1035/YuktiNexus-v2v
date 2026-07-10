@@ -833,3 +833,270 @@ const generateLocalMockOpportunities = async (careerGoal, currentSkills, readine
   return scoredOpportunities.sort((a, b) => b.matchScore - a.matchScore);
 };
 
+/**
+ * Fetch a set of 10 questions for the AI Interview Coach
+ */
+export const getInterviewQuestions = async (type, difficulty) => {
+  if (!isGeminiConfigured) {
+    console.warn("Gemini API key is not configured. Falling back to local dynamic Interview questions.");
+    return generateLocalMockQuestions(type, difficulty);
+  }
+
+  const prompt = `
+You are SheRise AI, an expert technical interviewer and HR coach.
+Generate a list of 10 interview questions matching the following profile:
+
+Interview Type: ${type}
+Difficulty Level: ${difficulty}
+
+Ensure your response is valid JSON matching EXACTLY the format below:
+[
+  {
+    "id": 1,
+    "question": "Tell me about yourself and your journey in STEM.",
+    "hint": "Focus on your academic major, technical projects, and passion for technology.",
+    "outlineAnswer": "Start with your name/major, transition into key tools you know (e.g. Python, React), and end with why you are interested in this track."
+  }
+]
+
+Return ONLY raw JSON. Do NOT wrap it in markdown code blocks like \`\`\`json.
+`;
+
+  try {
+    const response = await fetch(`${GEMINI_API_URL}?key=${apiKey}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
+    });
+    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+    const data = await response.json();
+    let textResponse = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+    textResponse = textResponse.replace(/^```json/, '').replace(/```$/, '').trim();
+    return JSON.parse(textResponse);
+  } catch (error) {
+    console.error("Gemini Interview questions fetch failed, using fallback:", error);
+    return generateLocalMockQuestions(type, difficulty);
+  }
+};
+
+/**
+ * Evaluate user's interview question response and yield metrics/feedback
+ */
+export const evaluateInterviewResponse = async (question, userResponse, type, difficulty) => {
+  if (!isGeminiConfigured) {
+    console.warn("Gemini API key is not configured. Falling back to local dynamic evaluation.");
+    return generateLocalMockEvaluation(question, userResponse, type, difficulty);
+  }
+
+  const prompt = `
+You are SheRise AI, an expert technical interviewer.
+Evaluate the user's answer to the question below:
+
+Question: ${question}
+User Response: ${userResponse}
+Interview Category: ${type}
+Difficulty: ${difficulty}
+
+Score the user on:
+1. Technical Accuracy (0-100)
+2. Communication (0-100)
+3. Confidence (0-100)
+4. Problem Solving (0-100)
+
+Ensure your response is valid JSON matching EXACTLY the format below:
+{
+  "scores": {
+    "technicalAccuracy": 85,
+    "communication": 90,
+    "confidence": 80,
+    "problemSolving": 75,
+    "overall": 83
+  },
+  "strengths": [
+    "Clearly explained the basic syntax or concept",
+    "Good structure and logical flow in speaking"
+  ],
+  "weaknesses": [
+    "Did not mention memory bounds or optimization details",
+    "Paused frequently when discussing cloud mappings"
+  ],
+  "suggestions": [
+    "Practice stating complexity bounds (e.g. O(N) runtime)",
+    "Use standard engineering terms like 'immutable state' or 'stateless pipeline'."
+  ]
+}
+
+Return ONLY raw JSON. Do NOT wrap it in markdown code blocks like \`\`\`json.
+`;
+
+  try {
+    const response = await fetch(`${GEMINI_API_URL}?key=${apiKey}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
+    });
+    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+    const data = await response.json();
+    let textResponse = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+    textResponse = textResponse.replace(/^```json/, '').replace(/```$/, '').trim();
+    return JSON.parse(textResponse);
+  } catch (error) {
+    console.error("Gemini Evaluation failed, using local mock:", error);
+    return generateLocalMockEvaluation(question, userResponse, type, difficulty);
+  }
+};
+
+/**
+ * Generate personalized dashboard tips and statistics recommendation
+ */
+export const getDashboardInsights = async (careerGoal, currentSkills, readinessScore = 50) => {
+  if (!isGeminiConfigured) {
+    return generateLocalMockInsights(careerGoal, currentSkills, readinessScore);
+  }
+
+  const prompt = `
+You are SheRise AI. Generate strategic weekly recommendations for a student:
+Target Career: ${careerGoal}
+Current Skills: ${currentSkills.join(', ')}
+Readiness Score: ${readinessScore}%
+
+Ensure your response is valid JSON matching EXACTLY the format below:
+{
+  "weeklyRecommendation": "Construct a containerized REST API with Docker and deploy to Render.",
+  "motivationalInsight": "Your coding consistency is high. Take the leap and submit your first open-source PR today!",
+  "prioritySkills": ["Docker", "TypeScript", "MLOps"],
+  "nextMilestone": "Complete 1 Mock Interview session on Technical tracks.",
+  "learningReminder": "Set aside 30 minutes today to learn about vector retrieval indexes."
+}
+
+Return ONLY raw JSON. Do NOT wrap it in markdown code blocks like \`\`\`json.
+`;
+
+  try {
+    const response = await fetch(`${GEMINI_API_URL}?key=${apiKey}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
+    });
+    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+    const data = await response.json();
+    let textResponse = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+    textResponse = textResponse.replace(/^```json/, '').replace(/```$/, '').trim();
+    return JSON.parse(textResponse);
+  } catch (error) {
+    console.error("Gemini Insights failed, using fallback:", error);
+    return generateLocalMockInsights(careerGoal, currentSkills, readinessScore);
+  }
+};
+
+/**
+ * Static Interview Questions Catalog
+ */
+const generateLocalMockQuestions = (type, difficulty) => {
+  const hrQuestions = [
+    { id: 1, question: "Tell me about yourself and your journey in STEM.", hint: "Structure your answer using Present, Past, and Future framework.", outlineAnswer: "State your current role/major, highlight 1-2 major technical accomplishments, and link them to why you are here today." },
+    { id: 2, question: "Why do you want to work for our organization?", hint: "Show that you have researched our engineering culture and core values.", outlineAnswer: "Mention specific open-source releases or company initiatives that align with your career roadmap goals." },
+    { id: 3, question: "Describe a time you faced a technical conflict in a group project. How did you resolve it?", hint: "Use the STAR method: Situation, Task, Action, Result.", outlineAnswer: "Explain the conflict objectively, focus on how you used communication or data to resolve it, and describe the positive result." },
+    { id: 4, question: "Where do you see yourself in five years?", hint: "Focus on skill mastery, leadership goals, and STEM commitment.", outlineAnswer: "Talk about becoming a lead architect or deep expert in machine learning, and mentoring other women entering STEM." },
+    { id: 5, question: "What is your greatest technical strength and greatest area for improvement?", hint: "Choose an improvement area that you are actively studying right now.", outlineAnswer: "Strengths: Fast adaptability or database optimization. Improvement: Containerization, which I am actively studying via a 4-week roadmap." },
+    { id: 6, question: "Why should we hire you over other candidates?", hint: "Connect your specific skill-match directly to their engineering needs.", outlineAnswer: "Highlight your unique blend of React modular development and cloud pipeline containerization skills." },
+    { id: 7, question: "How do you prioritize deadlines when handling multiple project streams?", hint: "Discuss tools like Kanban boards or priority matrix indices.", outlineAnswer: "Explain how you log tasks, estimate complexity, and communicate early with stakeholders if constraints shift." },
+    { id: 8, question: "Tell me about a time you failed to meet a deadline. What did you learn?", hint: "Take extreme ownership of the failure, and show what safety checks you put in place.", outlineAnswer: "Detail the bottleneck, how you adjusted, and the safety buffers you now add to code estimation parameters." },
+    { id: 9, question: "How do you keep up with emerging tech like generative AI models?", hint: "Mention newsletters, documentation libraries, or GitHub repositories.", outlineAnswer: "Discuss reading the Google AI Studio cookbook, testing packages on GitHub, and tracking technical releases." },
+    { id: 10, question: "What does diversity in STEM mean to you, and how do you support it?", hint: "Discuss mentorship or participating in communities like SheRise AI.", outlineAnswer: "Describe how collaboration and diverse viewpoints foster better architectures and how you support peers via STEM groups." }
+  ];
+
+  const techQuestions = [
+    { id: 1, question: "What is the difference between REST API and GraphQL?", hint: "Compare fetch payloads, over-fetching, and endpoint structures.", outlineAnswer: "REST uses multiple endpoints returning fixed schemas. GraphQL uses a single endpoint where clients request specific fields." },
+    { id: 2, question: "Explain the concept of Virtual DOM in React.", hint: "Discuss reconciliation, diffing algorithms, and actual DOM repaints.", outlineAnswer: "React keeps a virtual representation of the UI in memory, diffs it with the updated state, and batches repaints to the real DOM." },
+    { id: 3, question: "What is a vector embedding, and how is it used in semantic search?", hint: "Discuss multi-dimensional geometry, ChromaDB, and cosine distances.", outlineAnswer: "Embeddings convert text into dense numeric vectors representing meaning. Semantic search calculates closeness using cosine angles." },
+    { id: 4, question: "What is Docker, and why is it used in software deployment?", hint: "Compare containerization vs virtual machines and discuss reproducibility.", outlineAnswer: "Docker packages an application and its dependencies into a lightweight container, ensuring it runs identically on dev and cloud systems." },
+    { id: 5, question: "Explain the difference between SQL (relational) and NoSQL databases.", hint: "Compare table schemas vs document stores, and scaling options.", outlineAnswer: "SQL uses tables and foreign keys with ACID guarantees (good for transaction ledgers). NoSQL is schema-less and scales horizontally." },
+    { id: 6, question: "What is a Promise in JavaScript, and what are its states?", hint: "Mention pending, fulfilled, rejected, and async/await wrappers.", outlineAnswer: "A Promise represents an asynchronous operation. States are Pending, Fulfilled (resolved), or Rejected (errored)." },
+    { id: 7, question: "Explain the concept of caching and load balancing in system design.", hint: "Discuss Redis, server bottlenecks, and round-robin routers.", outlineAnswer: "Caching stores frequent query results in memory (like Redis). Load balancers split user traffic across multiple server instances." },
+    { id: 8, question: "What is Continuous Integration and Continuous Deployment (CI/CD)?", hint: "Discuss automated test suites and YAML configurations like GitHub Actions.", outlineAnswer: "CI compiles and tests code automatically on commits. CD deploys built binaries to production servers immediately after test runs." },
+    { id: 9, question: "How does a CNN (Convolutional Neural Network) work for image processing?", hint: "Mention filters, feature maps, and fully-connected layers.", outlineAnswer: "CNNs pass sliding filters over images to capture spatial features (edges, corners), pooling them down for classification." },
+    { id: 10, question: "Explain the difference between GET, POST, PUT, and DELETE HTTP requests.", hint: "Discuss idempotency, request body parameters, and standard REST behaviors.", outlineAnswer: "GET reads, POST creates (non-idempotent), PUT updates (idempotent), and DELETE removes resources." }
+  ];
+
+  const behavioralQuestions = [
+    { id: 1, question: "Describe a time you had to work with a difficult team member.", hint: "Focus on communication, empathy, and project outcome.", outlineAnswer: "Focus on active listening, establishing clear task boundaries, and aligning on common goals." },
+    { id: 2, question: "Tell me about a project you are proud of. What was your contribution?", hint: "Discuss engineering challenges and technical decisions.", outlineAnswer: "Explain the architecture, how you integrated the services, and the impact of the final application." },
+    { id: 3, question: "How do you handle constructive criticism or code reviews?", hint: "Emphasize growth mindset and collaborative code standards.", outlineAnswer: "View criticism as a learning path, discuss changes objectively, and align with the team style guides." },
+    { id: 4, question: "Describe a situation where you had to learn a new tool quickly.", hint: "Discuss resource search, reading docs, and building prototypes.", outlineAnswer: "Explain how you read official documentation, built a micro-project, and deployed it within a week." },
+    { id: 5, question: "How do you handle stress or tight project deadlines?", hint: "Focus on planning, task prioritization, and healthy work routines.", outlineAnswer: "Break big tasks into checklist tickets, prioritize with a matrix, and communicate delays proactively." },
+    { id: 6, question: "Describe a time you took the lead on a technical project.", hint: "Discuss delegating tasks, establishing code formats, and setting schedules.", outlineAnswer: "Explain how you coordinated team schedules, resolved bottlenecks, and successfully delivered the build." },
+    { id: 7, question: "Tell me about a time you had to explain a complex technical concept to a non-technical stakeholder.", hint: "Use analogies and avoid jargon.", outlineAnswer: "Explain the concept using a real-world metaphor (e.g. comparing a database to a library registry) to reach alignment." },
+    { id: 8, question: "How do you handle disagreement with your manager's technical decision?", hint: "Focus on data, constructive discussion, and committing to the final choice.", outlineAnswer: "Present your arguments with data or code spikes, but commit fully to the decision once a choice is made." },
+    { id: 9, question: "Describe a time you solved a bug that had blocked your team.", hint: "Explain your debugging strategy and logging search.", outlineAnswer: "Describe how you reproduced the bug, inspected server stack logs, and wrote a regression test for the fix." },
+    { id: 10, question: "What is your motivation for pursuing a technical career?", hint: "Talk about your interest in problem-solving and building systems.", outlineAnswer: "Share your passion for engineering systems that simplify workflows and solve real-world problems." }
+  ];
+
+  let selectedSet = hrQuestions;
+  if (type === 'Technical') selectedSet = techQuestions;
+  if (type === 'Behavioral') selectedSet = behavioralQuestions;
+
+  // Add difficulty-based modifications if needed
+  return selectedSet.map(q => ({
+    ...q,
+    id: q.id,
+    question: difficulty === 'Advanced' ? `${q.question} (Detail advanced design constraints in your answer.)` : q.question
+  }));
+};
+
+/**
+ * Static Interview Response Evaluation Fallback
+ */
+const generateLocalMockEvaluation = (question, userResponse, type, difficulty) => {
+  const wordCount = userResponse ? userResponse.trim().split(/\s+/).length : 0;
+  let accuracy = 40 + Math.min(wordCount * 4, 45);
+  let communication = 50 + Math.min(wordCount * 3, 40);
+  let confidence = 60 + Math.min(wordCount * 2, 30);
+  let problemSolving = 45 + Math.min(wordCount * 3, 40);
+
+  if (difficulty === 'Advanced') {
+    accuracy = Math.max(accuracy - 10, 40);
+    problemSolving = Math.max(problemSolving - 10, 40);
+  }
+
+  const overall = Math.round((accuracy + communication + confidence + problemSolving) / 4);
+
+  return {
+    scores: {
+      technicalAccuracy: accuracy,
+      communication,
+      confidence,
+      problemSolving,
+      overall
+    },
+    strengths: [
+      "Immediate and prompt formulation of an answer.",
+      "Identified and stated core terms relating to the question.",
+      "Good structure in explaining concepts."
+    ],
+    weaknesses: [
+      wordCount < 15 ? "The response is too brief. Try to elaborate with examples." : "Could expand on practical code implementation details.",
+      "Did not mention architectural scaling or runtime performance tradeoffs."
+    ],
+    suggestions: [
+      "Use the STAR method (Situation, Task, Action, Result) to organize examples.",
+      "Mention complexity bounds (e.g. O(1) space complexity or index keys) to show engineering depth."
+    ]
+  };
+};
+
+/**
+ * Static Dashboard Insights Fallback
+ */
+const generateLocalMockInsights = (careerGoal, currentSkills, readinessScore = 50) => {
+  const goal = careerGoal || 'AI Engineer';
+  return {
+    weeklyRecommendation: `Implement a simple project that parses text files and stores them as vectors to practice for ${goal} placements.`,
+    motivationalInsight: `Your readiness score is at ${readinessScore}%. Focus on your missing skill gaps to unlock intermediate tracks!`,
+    prioritySkills: goal.includes('AI') ? ["Docker", "PyTorch", "SQL"] : ["TypeScript", "Next.js", "Jest"],
+    nextMilestone: "Complete 1 Behavioral practice interview on the Coach page.",
+    learningReminder: "Practice coding algorithms daily for at least 15 minutes."
+  };
+};
+
+

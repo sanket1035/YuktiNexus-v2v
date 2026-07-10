@@ -18,6 +18,8 @@ import { ProfileSetupPage } from './pages/ProfileSetupPage';
 import { DashboardPage } from './pages/DashboardPage';
 import { CareerIntelligencePage } from './pages/CareerIntelligencePage';
 import { OpportunityHubPage } from './pages/OpportunityHubPage';
+import { InterviewCoachPage } from './pages/InterviewCoachPage';
+
 
 
 
@@ -119,6 +121,18 @@ function App() {
               <ProtectedRoutes requireProfileSetup={true}>
                 <DashboardLayout>
                   <OpportunityHubPage />
+                </DashboardLayout>
+              </ProtectedRoutes>
+            }
+          />
+
+          {/* Secure AI Interview Coach Route */}
+          <Route
+            path="/interview"
+            element={
+              <ProtectedRoutes requireProfileSetup={true}>
+                <DashboardLayout>
+                  <InterviewCoachPage />
                 </DashboardLayout>
               </ProtectedRoutes>
             }

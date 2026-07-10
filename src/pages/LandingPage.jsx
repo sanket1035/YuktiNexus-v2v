@@ -11,7 +11,8 @@ import {
   ChevronRight,
   TrendingUp,
   Award,
-  Users
+  Users,
+  Lock
 } from 'lucide-react';
 import { Button } from '../components/common/Button';
 import { useAuth } from '../hooks/useAuth';

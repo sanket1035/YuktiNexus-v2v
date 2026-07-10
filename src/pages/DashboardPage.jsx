@@ -14,10 +14,13 @@ import {
   Layers,
   ChevronRight
 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
+
 
 export const DashboardPage = () => {
   const { userProfile } = useAuth();
+  const navigate = useNavigate();
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -107,53 +110,48 @@ export const DashboardPage = () => {
           {/* Module 2: AI Roadmap Preview */}
           <motion.div
             variants={cardVariants}
-            className="bg-white dark:bg-luxury-purple-950 border border-luxury-cream-200 dark:border-luxury-purple-900 p-6 rounded-3xl shadow-sm relative overflow-hidden"
+            whileHover={{ y: -4 }}
+            onClick={() => navigate('/roadmap')}
+            className="bg-white dark:bg-luxury-purple-950 border border-luxury-cream-200 dark:border-luxury-purple-900 p-6 rounded-3xl shadow-sm relative overflow-hidden cursor-pointer group transition-all"
           >
-            {/* Locked Cover */}
-            <div className="absolute inset-0 bg-white/40 dark:bg-luxury-purple-950/40 backdrop-blur-[2px] z-10 flex flex-col items-center justify-center text-center p-6">
-              <div className="w-12 h-12 rounded-2xl bg-luxury-cream-100 dark:bg-luxury-purple-900/80 text-luxury-purple-750 dark:text-luxury-peach flex items-center justify-center border border-luxury-cream-200 dark:border-luxury-purple-850 shadow-md mb-3 animate-bounce">
-                <Lock size={20} />
-              </div>
-              <h4 className="text-sm font-bold text-luxury-purple-950 dark:text-white">
-                Module 2 Integration Point
-              </h4>
-              <p className="text-[11px] font-semibold text-luxury-purple-800/60 dark:text-luxury-cream-100/50 max-w-sm mt-1 leading-relaxed">
-                Connects to Gemini API for Skill-Gap Analysis & interactive roadmaps.
-              </p>
-            </div>
-
-            <div className="flex justify-between items-center pb-4 border-b border-luxury-cream-100 dark:border-luxury-purple-900 mb-5 relative z-0">
+            <div className="flex justify-between items-center pb-4 border-b border-luxury-cream-100 dark:border-luxury-purple-900 mb-5">
               <div className="flex items-center gap-2">
-                <Compass className="text-luxury-purple-700 dark:text-luxury-peach" size={18} />
+                <Compass className="text-luxury-purple-700 dark:text-luxury-peach group-hover:rotate-12 transition-transform" size={18} />
                 <h3 className="font-sans text-sm font-bold text-luxury-purple-950 dark:text-white uppercase tracking-wider">
                   AI Career Roadmap
                 </h3>
               </div>
-              <span className="text-[9px] font-bold uppercase tracking-widest bg-luxury-cream-100 text-luxury-purple-800 px-2 py-0.5 rounded">
-                Module 2
+              <span className="text-[9px] font-bold uppercase tracking-widest bg-luxury-purple-100 text-luxury-purple-700 dark:bg-luxury-purple-900 dark:text-luxury-peach px-2 py-0.5 rounded">
+                Active Module 2
               </span>
             </div>
 
-            {/* Stepper Timeline Dummy Graphic */}
-            <div className="space-y-6 relative z-0 opacity-40">
+            {/* Stepper Timeline Graphic */}
+            <div className="space-y-6">
               {[
-                { title: 'Core Tech Audit', desc: 'Parsing current capabilities and pre-requisites', status: 'pending' },
-                { title: 'Project Implementation', desc: 'Suggested build: Fullstack NextJS web application', status: 'pending' },
-                { title: 'Open-Source Contribution', desc: 'Submit commits to recommended GitHub repos', status: 'pending' }
+                { title: 'Core Skill Gap Audit', desc: 'Parsing target fields and identifying missing tools', status: 'active' },
+                { title: 'STEM Roadmap Generation', desc: 'Custom 6-month timeline mapped to career roles', status: 'active' },
+                { title: 'Portfolio Project Suggestions', desc: 'Structured projects with estimated timeframes', status: 'active' }
               ].map((item, idx) => (
                 <div key={idx} className="flex gap-4 items-start text-left">
                   <div className="flex flex-col items-center">
-                    <div className="w-6 h-6 rounded-full bg-luxury-cream-200 dark:bg-luxury-purple-900 flex items-center justify-center text-xs font-bold text-luxury-purple-400">
+                    <div className="w-6 h-6 rounded-full bg-luxury-purple-100 dark:bg-luxury-purple-900 text-luxury-purple-700 dark:text-luxury-peach flex items-center justify-center text-xs font-bold">
                       {idx + 1}
                     </div>
                     {idx < 2 && <div className="w-0.5 h-10 bg-luxury-cream-200 dark:bg-luxury-purple-900 mt-2"></div>}
                   </div>
                   <div>
-                    <h4 className="text-xs font-bold text-luxury-purple-950 dark:text-luxury-cream-100">{item.title}</h4>
-                    <p className="text-[10px] text-luxury-purple-800/60 dark:text-luxury-cream-150/40 leading-normal mt-0.5">{item.desc}</p>
+                    <h4 className="text-xs font-bold text-luxury-purple-950 dark:text-white">{item.title}</h4>
+                    <p className="text-[10px] text-luxury-purple-850/80 dark:text-luxury-cream-150/60 leading-normal mt-0.5">{item.desc}</p>
                   </div>
                 </div>
               ))}
+            </div>
+
+            <div className="mt-5 flex justify-end">
+              <span className="inline-flex items-center gap-1 text-[10px] font-bold text-luxury-purple-700 dark:text-luxury-peach group-hover:translate-x-0.5 transition-transform">
+                Open Career Intelligence <ArrowUpRight size={12} />
+              </span>
             </div>
           </motion.div>
 

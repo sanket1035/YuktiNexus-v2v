@@ -16,6 +16,8 @@ import { RegisterPage } from './pages/RegisterPage';
 import { ForgotPasswordPage } from './pages/ForgotPasswordPage';
 import { ProfileSetupPage } from './pages/ProfileSetupPage';
 import { DashboardPage } from './pages/DashboardPage';
+import { CareerIntelligencePage } from './pages/CareerIntelligencePage';
+
 
 // Scroll to top on route change helper
 const ScrollToTop = () => {
@@ -91,6 +93,18 @@ function App() {
               <ProtectedRoutes requireProfileSetup={true}>
                 <DashboardLayout>
                   <DashboardPage />
+                </DashboardLayout>
+              </ProtectedRoutes>
+            }
+          />
+
+          {/* Secure AI Career Intelligence Route */}
+          <Route
+            path="/roadmap"
+            element={
+              <ProtectedRoutes requireProfileSetup={true}>
+                <DashboardLayout>
+                  <CareerIntelligencePage />
                 </DashboardLayout>
               </ProtectedRoutes>
             }

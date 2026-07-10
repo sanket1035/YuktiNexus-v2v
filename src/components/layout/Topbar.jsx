@@ -124,7 +124,7 @@ export const Topbar = ({ onMenuClick }) => {
             className="flex items-center gap-1.5 p-1 pr-3 rounded-full hover:bg-luxury-cream-50 dark:hover:bg-luxury-purple-900/40 border border-transparent hover:border-luxury-cream-200 dark:hover:border-luxury-purple-900 cursor-pointer transition-all duration-350 focus:outline-none"
           >
             <img
-              src={userProfile?.photoURL || `https://api.dicebear.com/7.x/avataaars/svg?seed=user&clothing=blazerAndShirt`}
+              src={userProfile?.photoURL || `https://api.dicebear.com/7.x/lorelei-neutral/svg?seed=user&backgroundColor=b6e3f4`}
               alt="Avatar"
               className="w-8 h-8 rounded-full bg-luxury-purple-100 object-cover border border-luxury-purple-300 dark:border-luxury-purple-800"
             />

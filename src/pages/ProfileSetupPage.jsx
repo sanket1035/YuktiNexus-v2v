@@ -17,7 +17,7 @@ export const ProfileSetupPage = () => {
 
   // Setup Form States
   const [selectedAvatar, setSelectedAvatar] = useState(
-    userProfile?.photoURL || `https://api.dicebear.com/7.x/avataaars/svg?seed=SoftwareEngineer&top=bob&hairColor=black&clothing=blazerAndShirt&clothingColor=blue01&skin=614335&eyes=default&mouth=smile`
+    userProfile?.photoURL || `https://api.dicebear.com/7.x/lorelei-neutral/svg?seed=SoftwareEngineer&backgroundColor=b6e3f4`
   );
   const [skillInput, setSkillInput] = useState('');
   const [skills, setSkills] = useState(userProfile?.skills || []);
@@ -32,12 +32,12 @@ export const ProfileSetupPage = () => {
   const careerGoal = userProfile?.careerGoal || '';
 
   const avatarsList = [
-    'https://api.dicebear.com/7.x/avataaars/svg?seed=SoftwareEngineer&top=bob&hairColor=black&clothing=blazerAndShirt&clothingColor=blue01&skin=614335&eyes=default&mouth=smile',
-    'https://api.dicebear.com/7.x/avataaars/svg?seed=AI_Researcher&top=longHair&hairColor=brown&clothing=blazerAndShirt&clothingColor=gray02&skin=ae5c3a&eyes=default&mouth=smile',
-    'https://api.dicebear.com/7.x/avataaars/svg?seed=DataScientist&top=curvy&hairColor=auburn&clothing=blazerAndShirt&clothingColor=black&skin=f8d25c&eyes=default&mouth=smile',
-    'https://api.dicebear.com/7.x/avataaars/svg?seed=CyberSecurity&top=bun&hairColor=black&clothing=blazerAndShirt&clothingColor=heather&skin=ffdbb4&eyes=default&mouth=smile',
-    'https://api.dicebear.com/7.x/avataaars/svg?seed=CloudEngineer&top=straight02&hairColor=black&clothing=blazerAndShirt&clothingColor=pastelOrange&skin=d0a17c&eyes=default&mouth=smile',
-    'https://api.dicebear.com/7.x/avataaars/svg?seed=UIDesigner&top=froBand&hairColor=black&clothing=blazerAndShirt&clothingColor=pastelBlue&skin=fd9841&eyes=default&mouth=smile',
+    'https://api.dicebear.com/7.x/lorelei-neutral/svg?seed=SoftwareEngineer&backgroundColor=b6e3f4',
+    'https://api.dicebear.com/7.x/lorelei-neutral/svg?seed=AIResearcher&backgroundColor=c0aede',
+    'https://api.dicebear.com/7.x/lorelei-neutral/svg?seed=DataScientist&backgroundColor=d1d4f9',
+    'https://api.dicebear.com/7.x/lorelei-neutral/svg?seed=CyberSecurity&backgroundColor=ffd5dc',
+    'https://api.dicebear.com/7.x/lorelei-neutral/svg?seed=CloudEngineer&backgroundColor=ffdfbf',
+    'https://api.dicebear.com/7.x/lorelei-neutral/svg?seed=UIDesigner&backgroundColor=c9f0c0',
   ];
 
   const handleAddSkill = (e) => {

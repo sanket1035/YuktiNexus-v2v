@@ -11,7 +11,7 @@ import {
   ChevronRight,
   TrendingUp,
   Users,
-  Lock
+  CheckCircle2
 } from 'lucide-react';
 import { Button } from '../components/common/Button';
 import { useAuth } from '../hooks/useAuth';
@@ -36,43 +36,48 @@ export const LandingPage = () => {
   const modules = [
     {
       title: 'Authentication & User Management',
-      desc: 'Create educational profiles, select your STEM fields, and secure your credentials.',
+      desc: 'Secure registration, educational profiles, STEM field selection, and avatar customization.',
       icon: Users,
-      badge: 'Active Module 1',
-      active: true,
+      badge: '✓ Module 1 — Live',
+      route: '/register',
+      cta: 'Get Started',
       color: 'from-luxury-purple-700 to-luxury-purple-500'
     },
     {
       title: 'AI Career Intelligence',
-      desc: 'Resume parsing, skill-gap analysis, and custom roadmaps powered by Gemini API.',
+      desc: 'Gemini-powered resume parsing, skill-gap analysis, and personalized career roadmaps.',
       icon: Map,
-      badge: 'Module 2 - Roadmap',
-      active: false,
-      color: 'from-luxury-purple-300 to-luxury-purple-200'
+      badge: '✓ Module 2 — Live',
+      route: '/register',
+      cta: 'Generate Roadmap',
+      color: 'from-fuchsia-600 to-purple-600'
     },
     {
       title: 'Opportunity Hub',
-      desc: 'Personalized matching for internships, hackathons, and global scholarships.',
+      desc: 'AI-matched internships, hackathons, and global scholarships curated for women in STEM.',
       icon: Briefcase,
-      badge: 'Module 3 - Locked',
-      active: false,
-      color: 'from-luxury-purple-300 to-luxury-purple-200'
+      badge: '✓ Module 3 — Live',
+      route: '/register',
+      cta: 'Explore Opportunities',
+      color: 'from-pink-500 to-rose-500'
     },
     {
       title: 'AI Interview Coach',
-      desc: 'Audio mock interviews with real-time confidence scores and custom report cards.',
+      desc: 'Real-time mock interview sessions with Gemini evaluation, confidence scores, and report cards.',
       icon: Mic,
-      badge: 'Module 4 - Locked',
-      active: false,
-      color: 'from-luxury-purple-300 to-luxury-purple-200'
+      badge: '✓ Module 4 — Live',
+      route: '/register',
+      cta: 'Start Practice',
+      color: 'from-violet-600 to-indigo-600'
     },
     {
       title: 'Career Readiness Dashboard',
-      desc: 'Track metrics, earn STEM milestone badges, and visualize your career timeline.',
+      desc: 'Track progress metrics, earn STEM milestone badges, and visualize your full career timeline.',
       icon: BarChart2,
-      badge: 'Module 5 - Locked',
-      active: false,
-      color: 'from-luxury-purple-300 to-luxury-purple-200'
+      badge: '✓ Module 5 — Live',
+      route: '/register',
+      cta: 'View Dashboard',
+      color: 'from-luxury-peach to-luxury-purple-300'
     }
   ];
 
@@ -160,12 +165,16 @@ export const LandingPage = () => {
       <section id="features" className="py-24 px-6 md:px-12 bg-white dark:bg-luxury-purple-950/40 relative">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
-          <div className="text-center max-w-xl mx-auto mb-16">
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800/40 text-[10px] font-extrabold uppercase tracking-widest text-emerald-700 dark:text-emerald-400 mb-4">
+              <CheckCircle2 size={11} />
+              All 5 Modules Live
+            </div>
             <h2 className="font-serif text-3xl sm:text-4xl font-bold text-luxury-purple-950 dark:text-white mb-4">
-              Project Architecture
+              A Complete Career Intelligence Platform
             </h2>
             <p className="text-sm font-medium text-luxury-purple-800/70 dark:text-luxury-cream-100/60 leading-relaxed font-sans">
-              SheRise AI is developed as a modular ecosystem. Review the 5 modules designed to power women's career success in STEM.
+              SheRise AI is a fully shipped, modular ecosystem — every feature is live and ready for you to use today.
             </p>
           </div>
 
@@ -177,39 +186,28 @@ export const LandingPage = () => {
             viewport={{ once: true, margin: '-100px' }}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
-            {modules.map((mod) => (
+            {modules.map((mod, idx) => (
               <motion.div
                 key={mod.title}
                 variants={itemVariants}
-                className={`p-8 rounded-3xl border flex flex-col justify-between transition-all duration-500 relative overflow-hidden ${
-                  mod.active
-                    ? 'bg-gradient-to-b from-white to-luxury-cream-50/50 border-luxury-cream-300 shadow-md dark:from-luxury-purple-900/60 dark:to-luxury-purple-900/20 dark:border-luxury-purple-800'
-                    : 'bg-white/40 dark:bg-luxury-purple-950/20 border-luxury-cream-200/50 dark:border-luxury-purple-900/40 opacity-75'
-                }`}
+                whileHover={{ y: -4, transition: { duration: 0.2 } }}
+                className="p-8 rounded-3xl border flex flex-col justify-between transition-all duration-300 relative overflow-hidden bg-gradient-to-b from-white to-luxury-cream-50/50 border-luxury-cream-200 shadow-sm hover:shadow-xl hover:border-luxury-purple-200 dark:from-luxury-purple-900/60 dark:to-luxury-purple-900/20 dark:border-luxury-purple-800/60 dark:hover:border-luxury-purple-700 group cursor-default"
               >
-                {/* Glow behind active card */}
-                {mod.active && (
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-luxury-peach/10 rounded-full blur-2xl -z-10"></div>
-                )}
+                {/* Ambient glow behind icon */}
+                <div className="absolute top-0 right-0 w-40 h-40 bg-luxury-peach/8 dark:bg-luxury-purple-600/10 rounded-full blur-3xl -z-10 group-hover:opacity-100 opacity-60 transition-opacity" />
 
                 <div>
-                  {/* Badge */}
+                  {/* Icon + Badge row */}
                   <div className="flex justify-between items-start mb-6">
-                    <div className={`p-3 rounded-2xl bg-gradient-to-tr ${mod.color} text-white shadow-sm`}>
+                    <div className={`p-3 rounded-2xl bg-gradient-to-tr ${mod.color} text-white shadow-md`}>
                       <mod.icon size={20} />
                     </div>
-                    <span
-                      className={`text-[9px] font-extrabold uppercase tracking-widest px-2.5 py-1 rounded-full ${
-                        mod.active
-                          ? 'bg-luxury-purple-100 text-luxury-purple-700 dark:bg-luxury-purple-900 dark:text-luxury-peach'
-                          : 'bg-luxury-cream-100 text-luxury-purple-800/50 dark:bg-luxury-purple-900/40 dark:text-luxury-cream-200/40'
-                      }`}
-                    >
+                    <span className="text-[9px] font-extrabold uppercase tracking-widest px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 dark:bg-emerald-900/20 dark:text-emerald-400 dark:border-emerald-800/40">
                       {mod.badge}
                     </span>
                   </div>
 
-                  {/* Header */}
+                  {/* Title + desc */}
                   <h3 className="font-sans text-lg font-bold text-luxury-purple-950 dark:text-white mb-3">
                     {mod.title}
                   </h3>
@@ -218,21 +216,14 @@ export const LandingPage = () => {
                   </p>
                 </div>
 
-                <div>
-                  {mod.active ? (
-                    <button
-                      onClick={() => navigate('/register')}
-                      className="inline-flex items-center gap-1.5 text-xs font-bold text-luxury-purple-700 hover:text-luxury-purple-600 dark:text-luxury-peach dark:hover:text-luxury-peach-dark group"
-                    >
-                      <span>Try it now</span>
-                      <ChevronRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
-                    </button>
-                  ) : (
-                    <span className="text-xs font-semibold text-luxury-purple-800/40 dark:text-luxury-cream-100/30 flex items-center gap-1">
-                      <Lock size={12} /> Coming in next Module update
-                    </span>
-                  )}
-                </div>
+                {/* CTA */}
+                <button
+                  onClick={() => navigate(mod.route)}
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-luxury-purple-700 hover:text-luxury-purple-500 dark:text-luxury-peach dark:hover:text-luxury-peach-dark group/btn"
+                >
+                  <span>{mod.cta}</span>
+                  <ChevronRight size={14} className="group-hover/btn:translate-x-0.5 transition-transform" />
+                </button>
               </motion.div>
             ))}
           </motion.div>
@@ -299,19 +290,19 @@ export const LandingPage = () => {
                 quote: "SheRise AI is exactly what I needed. Having a dedicated roadmap that points out my exact skill-gaps and guides me with recommendations is a game-changer.",
                 name: "Riya Sen",
                 role: "Computer Science Graduate, IIT",
-                img: "https://api.dicebear.com/7.x/avataaars/svg?seed=Riya&clothing=blazerAndShirt"
+                img: "https://api.dicebear.com/7.x/lorelei-neutral/svg?seed=Riya&backgroundColor=b6e3f4"
               },
               {
                 quote: "Mock interviews are usually stressful, but the friendly, constructive AI coach makes it easy to practice, evaluate body language, and track confidence levels.",
                 name: "Sanya Roy",
                 role: "Software Engineering Intern",
-                img: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sanya&clothing=blazerAndShirt"
+                img: "https://api.dicebear.com/7.x/lorelei-neutral/svg?seed=Sanya&backgroundColor=c0aede"
               },
               {
                 quote: "The opportunity finder aggregates STEM scholarships and hackathons that I didn't even know existed. It saves me hours of manual tracking.",
                 name: "Meera Nair",
                 role: "Bio-Technology Researcher",
-                img: "https://api.dicebear.com/7.x/avataaars/svg?seed=Meera&clothing=blazerAndShirt"
+                img: "https://api.dicebear.com/7.x/lorelei-neutral/svg?seed=Meera&backgroundColor=ffd5dc"
               }
             ].map((test) => (
               <div key={test.name} className="p-8 rounded-3xl border border-luxury-cream-200 dark:border-luxury-purple-900 bg-luxury-cream-50/20 dark:bg-luxury-purple-900/10 text-left flex flex-col justify-between">

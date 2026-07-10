@@ -47,7 +47,7 @@ export const mockAuthService = {
       careerGoal: profileData.careerGoal || '',
       skills: profileData.skills || [],
       dreamCareer: profileData.dreamCareer || '',
-      photoURL: profileData.photoURL || `https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(profileData.fullName || 'User')}&clothing=blazerAndShirt`,
+      photoURL: profileData.photoURL || `https://api.dicebear.com/7.x/lorelei-neutral/svg?seed=${encodeURIComponent(profileData.fullName || 'User')}&backgroundColor=b6e3f4`,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     };
@@ -110,7 +110,7 @@ export const mockAuthService = {
         careerGoal: 'AI/ML Researcher',
         skills: ['Python', 'SQL', 'Data Science'],
         dreamCareer: 'Machine Learning Engineer',
-        photoURL: `https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(selected.name)}&clothing=blazerAndShirt`,
+        photoURL: `https://api.dicebear.com/7.x/lorelei-neutral/svg?seed=${encodeURIComponent(selected.name)}&backgroundColor=c0aede`,
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
         isNewUser: true // Flag to trigger Profile Setup if needed
@@ -177,7 +177,7 @@ export const mockFirestoreService = {
       ...existingProfile,
       ...profileData,
       uid,
-      photoURL: profileData.photoURL || existingProfile.photoURL || `https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(profileData.fullName || 'User')}&clothing=blazerAndShirt`,
+      photoURL: profileData.photoURL || existingProfile.photoURL || `https://api.dicebear.com/7.x/lorelei-neutral/svg?seed=${encodeURIComponent(profileData.fullName || 'User')}&backgroundColor=b6e3f4`,
       updatedAt: new Date().toISOString(),
       isNewUser: false // Clear setup flag on save
     };

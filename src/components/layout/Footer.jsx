@@ -81,20 +81,12 @@ export const Footer = () => {
               Connect With Us
             </h4>
             <div className="flex gap-4 mb-4">
-              {/* Twitter/X */}
-              <a
-                href="#"
-                className="w-9 h-9 rounded-xl bg-luxury-cream-200 hover:bg-luxury-cream-300 dark:bg-luxury-purple-800 dark:hover:bg-luxury-purple-700 text-luxury-purple-900 dark:text-luxury-cream-100 flex items-center justify-center transition-colors"
-                aria-label="Twitter"
-              >
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                </svg>
-              </a>
               {/* LinkedIn */}
               <a
-                href="#"
-                className="w-9 h-9 rounded-xl bg-luxury-cream-200 hover:bg-luxury-cream-300 dark:bg-luxury-purple-800 dark:hover:bg-luxury-purple-700 text-luxury-purple-900 dark:text-luxury-cream-100 flex items-center justify-center transition-colors"
+                href="https://www.linkedin.com/in/sanketcaudhari1035/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-xl bg-luxury-cream-200 hover:bg-[#0077B5] dark:bg-luxury-purple-800 dark:hover:bg-[#0077B5] text-luxury-purple-900 hover:text-white dark:text-luxury-cream-100 dark:hover:text-white flex items-center justify-center transition-colors"
                 aria-label="LinkedIn"
               >
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
@@ -103,8 +95,10 @@ export const Footer = () => {
               </a>
               {/* GitHub */}
               <a
-                href="#"
-                className="w-9 h-9 rounded-xl bg-luxury-cream-200 hover:bg-luxury-cream-300 dark:bg-luxury-purple-800 dark:hover:bg-luxury-purple-700 text-luxury-purple-900 dark:text-luxury-cream-100 flex items-center justify-center transition-colors"
+                href="https://github.com/sanket1035"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-xl bg-luxury-cream-200 hover:bg-luxury-purple-900 dark:bg-luxury-purple-800 dark:hover:bg-luxury-purple-700 text-luxury-purple-900 hover:text-white dark:text-luxury-cream-100 flex items-center justify-center transition-colors"
                 aria-label="GitHub"
               >
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">

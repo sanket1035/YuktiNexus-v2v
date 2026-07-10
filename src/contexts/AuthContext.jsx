@@ -107,7 +107,7 @@ export const AuthProvider = ({ children }) => {
           careerGoal: educationalDetails.careerGoal,
           skills: [],
           dreamCareer: '',
-          photoURL: `https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(educationalDetails.fullName)}&clothing=blazerAndShirt`,
+          photoURL: `https://api.dicebear.com/7.x/lorelei-neutral/svg?seed=${encodeURIComponent(educationalDetails.fullName)}&backgroundColor=b6e3f4`,
           createdAt: new Date().toISOString(),
           updatedAt: new Date().toISOString(),
           isNewUser: true
@@ -154,7 +154,7 @@ export const AuthProvider = ({ children }) => {
             careerGoal: '',
             skills: [],
             dreamCareer: '',
-            photoURL: user.photoURL || `https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(user.displayName || 'User')}&clothing=blazerAndShirt`,
+            photoURL: user.photoURL || `https://api.dicebear.com/7.x/lorelei-neutral/svg?seed=${encodeURIComponent(user.displayName || 'User')}&backgroundColor=b6e3f4`,
             createdAt: new Date().toISOString(),
             updatedAt: new Date().toISOString(),
             isNewUser: true

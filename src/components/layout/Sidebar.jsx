@@ -68,7 +68,7 @@ export const Sidebar = ({ isOpen, setIsOpen }) => {
           {/* User Profile Card */}
           <div className="flex items-center gap-3 p-3 bg-luxury-cream-50 dark:bg-luxury-purple-900/40 rounded-2xl border border-luxury-cream-200/50 dark:border-luxury-purple-900">
             <img
-              src={userProfile?.photoURL || `https://api.dicebear.com/7.x/avataaars/svg?seed=user&clothing=blazerAndShirt`}
+              src={userProfile?.photoURL || `https://api.dicebear.com/7.x/lorelei-neutral/svg?seed=user&backgroundColor=b6e3f4`}
               alt="Avatar"
               className="w-11 h-11 rounded-xl bg-luxury-purple-100 object-cover border border-luxury-purple-300 dark:border-luxury-purple-800"
             />

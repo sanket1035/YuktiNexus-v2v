@@ -10,19 +10,19 @@ import { formatProfileName } from '../utils/validation';
 export const ProfileSetupPage = () => {
   const { userProfile, updateProfile } = useAuth();
   const navigate = useNavigate();
-  
+
   const [activeStep, setActiveStep] = useState(1);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
   // Setup Form States
   const [selectedAvatar, setSelectedAvatar] = useState(
-    userProfile?.photoURL || `https://api.dicebear.com/7.x/lorelei-neutral/svg?seed=SoftwareEngineer&backgroundColor=b6e3f4`
+    userProfile?.photoURL || 'aria'
   );
   const [skillInput, setSkillInput] = useState('');
   const [skills, setSkills] = useState(userProfile?.skills || []);
   const [dreamCareer, setDreamCareer] = useState(userProfile?.dreamCareer || '');
-  
+
   // Editable fields (originally filled at registration)
   const [fullName, setFullName] = useState(userProfile?.fullName || '');
   const college = userProfile?.college || '';
@@ -32,12 +32,120 @@ export const ProfileSetupPage = () => {
   const careerGoal = userProfile?.careerGoal || '';
 
   const avatarsList = [
-    'https://api.dicebear.com/7.x/lorelei-neutral/svg?seed=SoftwareEngineer&backgroundColor=b6e3f4',
-    'https://api.dicebear.com/7.x/lorelei-neutral/svg?seed=AIResearcher&backgroundColor=c0aede',
-    'https://api.dicebear.com/7.x/lorelei-neutral/svg?seed=DataScientist&backgroundColor=d1d4f9',
-    'https://api.dicebear.com/7.x/lorelei-neutral/svg?seed=CyberSecurity&backgroundColor=ffd5dc',
-    'https://api.dicebear.com/7.x/lorelei-neutral/svg?seed=CloudEngineer&backgroundColor=ffdfbf',
-    'https://api.dicebear.com/7.x/lorelei-neutral/svg?seed=UIDesigner&backgroundColor=c9f0c0',
+    {
+      id: 'aria',
+      label: 'Software Engineer',
+      svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+        <rect width="100" height="100" rx="20" fill="#EDE9FE"/>
+        <!-- Body / Blazer -->
+        <ellipse cx="50" cy="95" rx="30" ry="18" fill="#6D28D9"/>
+        <rect x="36" y="72" width="28" height="20" rx="4" fill="#7C3AED"/>
+        <!-- Neck -->
+        <rect x="44" y="60" width="12" height="14" rx="4" fill="#FDDCBA"/>
+        <!-- Head -->
+        <ellipse cx="50" cy="50" rx="22" ry="24" fill="#FDDCBA"/>
+        <!-- Long dark hair -->
+        <ellipse cx="50" cy="36" rx="23" ry="16" fill="#3B1F0A"/>
+        <rect x="27" y="36" width="8" height="28" rx="4" fill="#3B1F0A"/>
+        <rect x="65" y="36" width="8" height="28" rx="4" fill="#3B1F0A"/>
+        <!-- Eyes -->
+        <ellipse cx="43" cy="50" rx="3" ry="3.5" fill="#1F2937"/>
+        <ellipse cx="57" cy="50" rx="3" ry="3.5" fill="#1F2937"/>
+        <!-- Smile -->
+        <path d="M44 58 Q50 63 56 58" stroke="#BE185D" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      </svg>`
+    },
+    {
+      id: 'zara',
+      label: 'AI Researcher',
+      svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+        <rect width="100" height="100" rx="20" fill="#FCE7F3"/>
+        <ellipse cx="50" cy="95" rx="30" ry="18" fill="#DB2777"/>
+        <rect x="36" y="72" width="28" height="20" rx="4" fill="#EC4899"/>
+        <rect x="44" y="60" width="12" height="14" rx="4" fill="#F5CBA7"/>
+        <ellipse cx="50" cy="50" rx="22" ry="24" fill="#F5CBA7"/>
+        <!-- Auburn wavy hair -->
+        <ellipse cx="50" cy="34" rx="23" ry="15" fill="#92400E"/>
+        <path d="M27 38 Q24 55 28 65" stroke="#92400E" stroke-width="8" fill="none" stroke-linecap="round"/>
+        <path d="M73 38 Q76 55 72 65" stroke="#92400E" stroke-width="8" fill="none" stroke-linecap="round"/>
+        <ellipse cx="43" cy="50" rx="3" ry="3.5" fill="#1F2937"/>
+        <ellipse cx="57" cy="50" rx="3" ry="3.5" fill="#1F2937"/>
+        <path d="M44 58 Q50 63 56 58" stroke="#BE185D" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      </svg>`
+    },
+    {
+      id: 'maya',
+      label: 'Data Scientist',
+      svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+        <rect width="100" height="100" rx="20" fill="#DBEAFE"/>
+        <ellipse cx="50" cy="95" rx="30" ry="18" fill="#1D4ED8"/>
+        <rect x="36" y="72" width="28" height="20" rx="4" fill="#2563EB"/>
+        <rect x="44" y="60" width="12" height="14" rx="4" fill="#FDDCBA"/>
+        <ellipse cx="50" cy="50" rx="22" ry="24" fill="#FDDCBA"/>
+        <!-- Short blonde bob -->
+        <ellipse cx="50" cy="34" rx="23" ry="15" fill="#D97706"/>
+        <rect x="27" y="34" width="7" height="18" rx="3" fill="#D97706"/>
+        <rect x="66" y="34" width="7" height="18" rx="3" fill="#D97706"/>
+        <ellipse cx="43" cy="50" rx="3" ry="3.5" fill="#1F2937"/>
+        <ellipse cx="57" cy="50" rx="3" ry="3.5" fill="#1F2937"/>
+        <path d="M44 58 Q50 63 56 58" stroke="#BE185D" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      </svg>`
+    },
+    {
+      id: 'siya',
+      label: 'Cybersecurity',
+      svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+        <rect width="100" height="100" rx="20" fill="#D1FAE5"/>
+        <ellipse cx="50" cy="95" rx="30" ry="18" fill="#065F46"/>
+        <rect x="36" y="72" width="28" height="20" rx="4" fill="#059669"/>
+        <rect x="44" y="60" width="12" height="14" rx="4" fill="#F0C070"/>
+        <ellipse cx="50" cy="50" rx="22" ry="24" fill="#F0C070"/>
+        <!-- Black straight long hair -->
+        <ellipse cx="50" cy="33" rx="23" ry="15" fill="#111827"/>
+        <rect x="27" y="33" width="7" height="32" rx="3" fill="#111827"/>
+        <rect x="66" y="33" width="7" height="32" rx="3" fill="#111827"/>
+        <ellipse cx="43" cy="50" rx="3" ry="3.5" fill="#1F2937"/>
+        <ellipse cx="57" cy="50" rx="3" ry="3.5" fill="#1F2937"/>
+        <path d="M44 58 Q50 63 56 58" stroke="#BE185D" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      </svg>`
+    },
+    {
+      id: 'nova',
+      label: 'Cloud Engineer',
+      svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+        <rect width="100" height="100" rx="20" fill="#FEF3C7"/>
+        <ellipse cx="50" cy="95" rx="30" ry="18" fill="#D97706"/>
+        <rect x="36" y="72" width="28" height="20" rx="4" fill="#F59E0B"/>
+        <rect x="44" y="60" width="12" height="14" rx="4" fill="#E8C9A0"/>
+        <ellipse cx="50" cy="50" rx="22" ry="24" fill="#E8C9A0"/>
+        <!-- Brown curly hair bun -->
+        <ellipse cx="50" cy="31" rx="24" ry="14" fill="#7C3500"/>
+        <circle cx="50" cy="24" r="10" fill="#7C3500"/>
+        <rect x="27" y="35" width="7" height="16" rx="3" fill="#7C3500"/>
+        <rect x="66" y="35" width="7" height="16" rx="3" fill="#7C3500"/>
+        <ellipse cx="43" cy="50" rx="3" ry="3.5" fill="#1F2937"/>
+        <ellipse cx="57" cy="50" rx="3" ry="3.5" fill="#1F2937"/>
+        <path d="M44 58 Q50 63 56 58" stroke="#BE185D" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      </svg>`
+    },
+    {
+      id: 'luna',
+      label: 'UI Designer',
+      svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+        <rect width="100" height="100" rx="20" fill="#F3E8FF"/>
+        <ellipse cx="50" cy="95" rx="30" ry="18" fill="#7E22CE"/>
+        <rect x="36" y="72" width="28" height="20" rx="4" fill="#9333EA"/>
+        <rect x="44" y="60" width="12" height="14" rx="4" fill="#FDDCBA"/>
+        <ellipse cx="50" cy="50" rx="22" ry="24" fill="#FDDCBA"/>
+        <!-- Light brown medium straight hair -->
+        <ellipse cx="50" cy="33" rx="23" ry="14" fill="#B45309"/>
+        <rect x="27" y="34" width="7" height="22" rx="3" fill="#B45309"/>
+        <rect x="66" y="34" width="7" height="22" rx="3" fill="#B45309"/>
+        <ellipse cx="43" cy="50" rx="3" ry="3.5" fill="#1F2937"/>
+        <ellipse cx="57" cy="50" rx="3" ry="3.5" fill="#1F2937"/>
+        <path d="M44 58 Q50 63 56 58" stroke="#BE185D" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      </svg>`
+    },
   ];
 
   const handleAddSkill = (e) => {
@@ -70,9 +178,15 @@ export const ProfileSetupPage = () => {
 
     setLoading(true);
     try {
+      // Convert avatar id → data URL so photoURL works as <img src> everywhere
+      const avatarObj = avatarsList.find(a => a.id === selectedAvatar);
+      const photoURL = avatarObj
+        ? `data:image/svg+xml;utf8,${encodeURIComponent(avatarObj.svg)}`
+        : selectedAvatar;
+
       await updateProfile({
         fullName,
-        photoURL: selectedAvatar,
+        photoURL,
         skills,
         dreamCareer,
         college,
@@ -131,13 +245,12 @@ export const ProfileSetupPage = () => {
             <div key={st.title} className="flex flex-col items-center relative z-10 text-center">
               <button
                 onClick={() => setActiveStep(stepNum)}
-                className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm cursor-pointer border-2 transition-all duration-300 ${
-                  isCompleted
+                className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm cursor-pointer border-2 transition-all duration-300 ${isCompleted
                     ? 'bg-green-500 border-green-500 text-white shadow-sm shadow-green-500/20'
                     : isActive
-                    ? 'bg-luxury-purple-700 border-luxury-purple-700 text-white shadow-md dark:bg-luxury-purple-500 dark:border-luxury-purple-500'
-                    : 'bg-white border-luxury-cream-250 text-luxury-purple-400 dark:bg-luxury-purple-950 dark:border-luxury-purple-800 dark:text-luxury-purple-500'
-                }`}
+                      ? 'bg-luxury-purple-700 border-luxury-purple-700 text-white shadow-md dark:bg-luxury-purple-500 dark:border-luxury-purple-500'
+                      : 'bg-white border-luxury-cream-250 text-luxury-purple-400 dark:bg-luxury-purple-950 dark:border-luxury-purple-800 dark:text-luxury-purple-500'
+                  }`}
               >
                 {stepNum}
               </button>
@@ -179,17 +292,17 @@ export const ProfileSetupPage = () => {
                 <div className="grid grid-cols-3 sm:grid-cols-6 gap-4">
                   {avatarsList.map((avatar) => (
                     <button
-                      key={avatar}
+                      key={avatar.id}
                       type="button"
-                      onClick={() => setSelectedAvatar(avatar)}
-                      className={`relative rounded-2xl bg-luxury-cream-50 hover:bg-luxury-cream-100 dark:bg-luxury-purple-900/30 dark:hover:bg-luxury-purple-900/60 border-2 overflow-hidden cursor-pointer transition-all duration-300 p-1 flex items-center justify-center aspect-square hover:scale-110 ${
-                        selectedAvatar === avatar
-                          ? 'border-luxury-purple-500 dark:border-luxury-peach scale-105 shadow-[0_0_15px_rgba(245,183,210,0.75)] dark:shadow-[0_0_15px_rgba(192,132,252,0.5)] animate-pulse'
-                          : 'border-transparent'
+                      title={avatar.label}
+                      onClick={() => setSelectedAvatar(avatar.id)}
+                      className={`relative rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 flex items-center justify-center aspect-square hover:scale-110 border-2 ${
+                        selectedAvatar === avatar.id
+                          ? 'border-luxury-purple-500 dark:border-luxury-peach scale-105 shadow-[0_0_15px_rgba(245,183,210,0.75)] dark:shadow-[0_0_15px_rgba(192,132,252,0.5)]'
+                          : 'border-transparent hover:border-luxury-purple-300 dark:hover:border-luxury-purple-700'
                       }`}
-                    >
-                      <img src={avatar} alt="Avatar Preset" className="w-full h-full object-contain" />
-                    </button>
+                      dangerouslySetInnerHTML={{ __html: avatar.svg }}
+                    />
                   ))}
                 </div>
               </div>
@@ -248,7 +361,7 @@ export const ProfileSetupPage = () => {
                 <span className="text-xs font-semibold uppercase tracking-widest text-luxury-purple-600/80 dark:text-luxury-purple-300/80 font-sans">
                   Selected Skills ({skills.length})
                 </span>
-                
+
                 {skills.length === 0 ? (
                   <div className="p-6 text-center border border-dashed border-luxury-cream-250 dark:border-luxury-purple-900 rounded-2xl text-xs font-bold text-luxury-purple-400 dark:text-luxury-purple-500">
                     No skills added yet. Use the field above to register your skills.

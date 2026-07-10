@@ -578,45 +578,10 @@ The application is designed to provide:
 
 # Team YuktiNexus
 
-<table>
-<tr>
-
-<td align="center" width="50%">
-
-## Sanket Chaudhari
-
-Project Lead
-
-AI Integration
-
-Full Stack Development
-
-GitHub
-
-https://github.com/sanket1035
-
-</td>
-
-<td align="center" width="50%">
-
-## Purva Chopade
-
-Frontend Development
-
-UI/UX Design
-
-Documentation
-
-Testing
-
-GitHub
-
-https://github.com/purvachopade1665
-
-</td>
-
-</tr>
-</table>
+| Name | Role | GitHub |
+|------|------|--------|
+| **Sanket Chaudhari** | Project Lead • AI Integration • Full Stack Development | [@sanket1035](https://github.com/sanket1035) |
+| **Purva Chopade** | Frontend Development • UI/UX Design • Documentation • Testing | [@purvachopade1665](https://github.com/purvachopade1665) |
 
 ---
 

@@ -32,7 +32,7 @@ export const Sidebar = ({ isOpen, setIsOpen }) => {
   const navigation = [
     { name: 'Dashboard', path: '/dashboard', icon: LayoutDashboard, enabled: true },
     { name: 'AI Career Roadmap', path: '/roadmap', icon: Map, enabled: true, module: 2 },
-    { name: 'Opportunity Hub', path: '/opportunities', icon: Briefcase, enabled: false, module: 3 },
+    { name: 'Opportunity Hub', path: '/opportunities', icon: Briefcase, enabled: true, module: 3 },
     { name: 'AI Interview Coach', path: '/interview', icon: Mic, enabled: false, module: 4 },
     { name: 'Career Analytics', path: '/analytics', icon: BarChart2, enabled: false, module: 5 },
   ];

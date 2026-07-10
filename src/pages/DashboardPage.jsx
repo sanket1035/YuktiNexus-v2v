@@ -156,42 +156,32 @@ export const DashboardPage = () => {
           </motion.div>
 
           {/* Module 3: Opportunity Matcher Preview */}
+          {/* Module 3: Opportunity Matcher Preview */}
           <motion.div
             variants={cardVariants}
-            className="bg-white dark:bg-luxury-purple-950 border border-luxury-cream-200 dark:border-luxury-purple-900 p-6 rounded-3xl shadow-sm relative overflow-hidden"
+            whileHover={{ y: -4 }}
+            onClick={() => navigate('/opportunities')}
+            className="bg-white dark:bg-luxury-purple-950 border border-luxury-cream-200 dark:border-luxury-purple-900 p-6 rounded-3xl shadow-sm relative overflow-hidden cursor-pointer group transition-all"
           >
-            {/* Locked Cover */}
-            <div className="absolute inset-0 bg-white/40 dark:bg-luxury-purple-950/40 backdrop-blur-[2px] z-10 flex flex-col items-center justify-center text-center p-6">
-              <div className="w-12 h-12 rounded-2xl bg-luxury-cream-100 dark:bg-luxury-purple-900/80 text-luxury-purple-750 dark:text-luxury-peach flex items-center justify-center border border-luxury-cream-200 dark:border-luxury-purple-850 shadow-md mb-3">
-                <Lock size={20} />
-              </div>
-              <h4 className="text-sm font-bold text-luxury-purple-950 dark:text-white">
-                Module 3 Integration Point
-              </h4>
-              <p className="text-[11px] font-semibold text-luxury-purple-800/60 dark:text-luxury-cream-100/50 max-w-sm mt-1 leading-relaxed">
-                Aggregates active STEM internships, global hackathons, and scholarships.
-              </p>
-            </div>
-
-            <div className="flex justify-between items-center pb-4 border-b border-luxury-cream-100 dark:border-luxury-purple-900 mb-5 relative z-0">
+            <div className="flex justify-between items-center pb-4 border-b border-luxury-cream-100 dark:border-luxury-purple-900 mb-5">
               <div className="flex items-center gap-2">
-                <Briefcase className="text-luxury-purple-700 dark:text-luxury-peach" size={18} />
+                <Briefcase className="text-luxury-purple-700 dark:text-luxury-peach group-hover:rotate-12 transition-transform" size={18} />
                 <h3 className="font-sans text-sm font-bold text-luxury-purple-950 dark:text-white uppercase tracking-wider">
                   Matched STEM Opportunities
                 </h3>
               </div>
-              <span className="text-[9px] font-bold uppercase tracking-widest bg-luxury-cream-100 text-luxury-purple-800 px-2 py-0.5 rounded">
-                Module 3
+              <span className="text-[9px] font-bold uppercase tracking-widest bg-luxury-purple-100 text-luxury-purple-700 dark:bg-luxury-purple-900 dark:text-luxury-peach px-2 py-0.5 rounded">
+                Active Module 3
               </span>
             </div>
 
             {/* List dummy graphic */}
-            <div className="flex flex-col gap-4 relative z-0 opacity-40">
+            <div className="flex flex-col gap-4">
               {[
                 { title: 'STEP Internship 2026', type: 'Google', tags: ['Software Eng', 'Summer 2026'] },
                 { title: 'Women Techmakers Scholarship', type: 'Adobe', tags: ['Scholarship', '₹2,00,000 Grant'] }
               ].map((opp, idx) => (
-                <div key={idx} className="flex justify-between items-center p-3 bg-luxury-cream-50 dark:bg-luxury-purple-900/20 border border-luxury-cream-200 dark:border-luxury-purple-900 rounded-2xl">
+                <div key={idx} className="flex justify-between items-center p-3 bg-luxury-cream-50 dark:bg-luxury-purple-900/20 border border-luxury-cream-200 dark:border-luxury-purple-900 rounded-2xl hover:border-luxury-purple-305 transition-colors">
                   <div>
                     <h4 className="text-xs font-bold text-luxury-purple-950 dark:text-luxury-cream-100">{opp.title}</h4>
                     <span className="text-[10px] text-luxury-purple-500 font-bold dark:text-luxury-peach">{opp.type}</span>
@@ -205,6 +195,12 @@ export const DashboardPage = () => {
                   </div>
                 </div>
               ))}
+            </div>
+
+            <div className="mt-5 flex justify-end">
+              <span className="inline-flex items-center gap-1 text-[10px] font-bold text-luxury-purple-700 dark:text-luxury-peach group-hover:translate-x-0.5 transition-transform">
+                Open Opportunity Hub <ArrowUpRight size={12} />
+              </span>
             </div>
           </motion.div>
         </div>

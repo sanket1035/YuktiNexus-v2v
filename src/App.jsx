@@ -17,6 +17,8 @@ import { ForgotPasswordPage } from './pages/ForgotPasswordPage';
 import { ProfileSetupPage } from './pages/ProfileSetupPage';
 import { DashboardPage } from './pages/DashboardPage';
 import { CareerIntelligencePage } from './pages/CareerIntelligencePage';
+import { OpportunityHubPage } from './pages/OpportunityHubPage';
+
 
 
 // Scroll to top on route change helper
@@ -105,6 +107,18 @@ function App() {
               <ProtectedRoutes requireProfileSetup={true}>
                 <DashboardLayout>
                   <CareerIntelligencePage />
+                </DashboardLayout>
+              </ProtectedRoutes>
+            }
+          />
+
+          {/* Secure Opportunity Hub Route */}
+          <Route
+            path="/opportunities"
+            element={
+              <ProtectedRoutes requireProfileSetup={true}>
+                <DashboardLayout>
+                  <OpportunityHubPage />
                 </DashboardLayout>
               </ProtectedRoutes>
             }

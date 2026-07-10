@@ -508,3 +508,328 @@ const generateLocalMockAnalysis = async (careerGoal, currentSkills, resumeFileNa
     }
   };
 };
+
+/**
+ * Fetch Opportunity Recommendations based on career path, skills, and readiness score.
+ */
+export const getOpportunityRecommendations = async (careerGoal, currentSkills, readinessScore = 50) => {
+  if (!isGeminiConfigured) {
+    console.warn("Gemini API key is not configured. Falling back to local dynamic Opportunity mock.");
+    return await generateLocalMockOpportunities(careerGoal, currentSkills, readinessScore);
+  }
+
+  const prompt = `
+You are SheRise AI, an expert career advisor and technical recruiter.
+Recommend a list of 8 opportunities matching the user's STEM qualifications:
+
+User Career Goal: ${careerGoal}
+User Current Skills: ${currentSkills.join(', ') || 'None'}
+User Readiness Score: ${readinessScore}%
+
+Categorize each opportunity exactly into one of:
+"Internships", "Hackathons", "Scholarships", "Open Source", "Competitions", "Women Communities", "Mentorship Programs", "Remote Jobs", "Certifications", "Conferences".
+
+Ensure your response is valid JSON matching EXACTLY the format below:
+[
+  {
+    "id": "opp-unique-1",
+    "title": "STEP Internship 2026",
+    "organization": "Google",
+    "category": "Internships",
+    "difficulty": "Beginner",
+    "locationType": "Hybrid",
+    "deadlineDays": 12,
+    "eligibility": "Second-year B.Tech students in STEM.",
+    "description": "A 12-week summer internship targeting computer science undergraduates, offering mentoring and hands-on coding.",
+    "applyLink": "https://careers.google.com",
+    "matchScore": 94,
+    "reason": "Matches your Python and Git knowledge, and is beginner-friendly.",
+    "trendingBadge": "Popular"
+  }
+]
+
+Return ONLY raw JSON. Do NOT wrap it in markdown code blocks like \`\`\`json.
+`;
+
+  try {
+    const response = await fetch(`${GEMINI_API_URL}?key=${apiKey}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        contents: [{ parts: [{ text: prompt }] }]
+      })
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    let textResponse = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+    textResponse = textResponse.replace(/^```json/, '').replace(/```$/, '').trim();
+    return JSON.parse(textResponse);
+  } catch (error) {
+    console.error("Gemini Opportunity fetch failed, falling back to mock sandbox:", error);
+    return await generateLocalMockOpportunities(careerGoal, currentSkills, readinessScore);
+  }
+};
+
+/**
+ * Generates a local mock catalog of matching opportunities based on selected tracks and skills.
+ */
+const generateLocalMockOpportunities = async (careerGoal, currentSkills, readinessScore = 50) => {
+  // Simulate network latency (1 second)
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+
+  const goal = careerGoal || 'AI Engineer';
+  const cleanSkills = currentSkills.map(s => s.trim().toLowerCase());
+
+  // Comprehensive static opportunity database
+  const baseOpportunities = [
+    {
+      id: "opp-1",
+      title: "Google STEP Internship 2026",
+      organization: "Google",
+      category: "Internships",
+      difficulty: "Beginner",
+      locationType: "Hybrid",
+      deadlineDays: 8,
+      eligibility: "B.Tech/B.E. second-year undergraduates in Computer Science or related fields.",
+      description: "Development program designed for second-year undergraduates, offering hands-on coding tasks and mentorship.",
+      applyLink: "https://careers.google.com/jobs",
+      trendingBadge: "Popular",
+      keywords: ["python", "java", "c++", "git", "javascript"]
+    },
+    {
+      id: "opp-2",
+      title: "Microsoft SWE Summer Intern",
+      organization: "Microsoft",
+      category: "Internships",
+      difficulty: "Intermediate",
+      locationType: "Offline",
+      deadlineDays: 15,
+      eligibility: "Penultimate year B.Tech/M.Tech students with good programming basics.",
+      description: "Solve complex technical design problems, write scalable services, and collaborate with product teams.",
+      applyLink: "https://careers.microsoft.com",
+      trendingBadge: "Trending",
+      keywords: ["c#", "java", "python", "typescript", "git", "sql"]
+    },
+    {
+      id: "opp-3",
+      title: "Adobe Women-in-Technology Scholarship",
+      organization: "Adobe",
+      category: "Scholarships",
+      difficulty: "Beginner",
+      locationType: "Remote",
+      deadlineDays: 20,
+      eligibility: "Full-time female STEM students with strong academic scores.",
+      description: "Provides ₹2,00,000 tuition grant and an internship interview opportunity at Adobe India.",
+      applyLink: "https://research.adobe.com/scholarships",
+      trendingBadge: "Popular",
+      keywords: ["python", "javascript", "react", "c++", "problem solving"]
+    },
+    {
+      id: "opp-4",
+      title: "Generation Google Scholarship (APAC)",
+      organization: "Google",
+      category: "Scholarships",
+      difficulty: "Beginner",
+      locationType: "Remote",
+      deadlineDays: 14,
+      eligibility: "Female students pursuing computer science or software engineering degrees.",
+      description: "A $2,500 USD grant awarded based on academic performance and dedication to diversity and leadership in STEM.",
+      applyLink: "https://buildyourfor.withgoogle.com/scholarships",
+      trendingBadge: "Closing Today",
+      keywords: ["programming", "leadership", "stem", "problem solving"]
+    },
+    {
+      id: "opp-5",
+      title: "Smart India Hackathon - WIE track",
+      organization: "Govt of India",
+      category: "Hackathons",
+      difficulty: "Intermediate",
+      locationType: "Offline",
+      deadlineDays: 5,
+      eligibility: "Teams representing recognized academic colleges. Must include female developers.",
+      description: "National hackathon challenge solving pressing industrial and administrative problems under 36-hour timelines.",
+      applyLink: "https://sih.gov.in",
+      trendingBadge: "Trending",
+      keywords: ["react", "node.js", "firebase", "python", "sql", "git"]
+    },
+    {
+      id: "opp-6",
+      title: "SheBuilds Global STEM Hackathon",
+      organization: "Women Who Code",
+      category: "Hackathons",
+      difficulty: "Beginner",
+      locationType: "Remote",
+      deadlineDays: 18,
+      eligibility: "Open to female and non-binary designers and engineers worldwide.",
+      description: "Build innovative web/mobile apps utilizing APIs to promote sustainable education or health accessibility.",
+      applyLink: "https://womenwhocode.com",
+      trendingBadge: "Recently Added",
+      keywords: ["react", "tailwind", "figma", "firebase", "javascript"]
+    },
+    {
+      id: "opp-7",
+      title: "Google Summer of Code (GSoC) 2026",
+      organization: "Google Open Source",
+      category: "Open Source",
+      difficulty: "Advanced",
+      locationType: "Remote",
+      deadlineDays: 30,
+      eligibility: "Open to students and open-source beginners aged 18+.",
+      description: "A global program providing stipends to write code for open-source organizations under mentor supervision.",
+      applyLink: "https://summerofcode.withgoogle.com",
+      trendingBadge: "Popular",
+      keywords: ["git", "github", "python", "c++", "javascript", "docker"]
+    },
+    {
+      id: "opp-8",
+      title: "Outreachy Open Source Internships",
+      organization: "Software Freedom Conservancy",
+      category: "Open Source",
+      difficulty: "Intermediate",
+      locationType: "Remote",
+      deadlineDays: 25,
+      eligibility: "People subject to systemic bias in the tech industry.",
+      description: "A 3-month paid remote internship supporting open source development and documentation tasks.",
+      applyLink: "https://outreachy.org",
+      trendingBadge: "Trending",
+      keywords: ["git", "github", "documentation", "python", "javascript"]
+    },
+    {
+      id: "opp-9",
+      title: "Grace Hopper Celebration 2026",
+      organization: "AnitaB.org",
+      category: "Conferences",
+      difficulty: "Beginner",
+      locationType: "Offline",
+      deadlineDays: 45,
+      eligibility: "Female students and industry professionals in technical computing.",
+      description: "The world's largest gathering of women technologists, offering keynote panels, networking, and career fairs.",
+      applyLink: "https://ghc.anitab.org",
+      trendingBadge: "Popular",
+      keywords: ["networking", "stem", "career advancement"]
+    },
+    {
+      id: "opp-10",
+      title: "Women in Data Science (WiDS) Event",
+      organization: "Stanford University",
+      category: "Conferences",
+      difficulty: "Intermediate",
+      locationType: "Hybrid",
+      deadlineDays: 22,
+      eligibility: "Open to anyone interested in data science and computational modeling.",
+      description: "Technical conference featuring stellar female researchers explaining regressions, pipelines, and vector models.",
+      applyLink: "https://widsconference.org",
+      trendingBadge: "Recently Added",
+      keywords: ["python", "data science", "machine learning", "pandas"]
+    },
+    {
+      id: "opp-11",
+      title: "Google Women in Engineering Mentorship",
+      organization: "Google India",
+      category: "Mentorship Programs",
+      difficulty: "Beginner",
+      locationType: "Hybrid",
+      deadlineDays: 10,
+      eligibility: "Third-year female B.Tech students pursuing technical streams.",
+      description: "A structured 12-week program matching students with Google engineers to prepare for technical interview loops.",
+      applyLink: "https://buildyourfor.withgoogle.com",
+      trendingBadge: "Trending",
+      keywords: ["dsa", "interview prep", "problem solving", "c++", "python", "java"]
+    },
+    {
+      id: "opp-12",
+      title: "Junior AI/ML Engineer (Remote)",
+      organization: "Scale AI",
+      category: "Remote Jobs",
+      difficulty: "Intermediate",
+      locationType: "Remote",
+      deadlineDays: 16,
+      eligibility: "STEM graduates with good coding fluency in Python and ML libraries.",
+      description: "Write backend endpoints to serve predictions, clean data sets, and evaluate classification boundaries.",
+      applyLink: "https://scale.com/careers",
+      trendingBadge: "Trending",
+      keywords: ["python", "fastapi", "docker", "pytorch", "scikit-learn", "git"]
+    },
+    {
+      id: "opp-13",
+      title: "AWS Certified Developer - STEM Grant",
+      organization: "Amazon Web Services",
+      category: "Certifications",
+      difficulty: "Intermediate",
+      locationType: "Remote",
+      deadlineDays: 50,
+      eligibility: "Female university students in tech streams. Grants cover 100% exam fees.",
+      description: "Validates technical expertise in developing, maintaining, and deploying applications on AWS cloud systems.",
+      applyLink: "https://aws.amazon.com/education",
+      trendingBadge: "Popular",
+      keywords: ["aws", "cloud", "deployment", "node.js", "python"]
+    },
+    {
+      id: "opp-14",
+      title: "ElevateHer Coding Challenge 2026",
+      organization: "Unstop Challenge",
+      category: "Competitions",
+      difficulty: "Intermediate",
+      locationType: "Remote",
+      deadlineDays: 6,
+      eligibility: "STEM students from engineering colleges.",
+      description: "Online coding hackathon checking algorithms, syntax, and problem-solving skills under time deadlines.",
+      applyLink: "https://unstop.com",
+      trendingBadge: "Closing Today",
+      keywords: ["dsa", "c++", "java", "python", "problem solving"]
+    }
+  ];
+
+  // Process opportunities and calculate custom scores based on skills matching
+  const scoredOpportunities = baseOpportunities.map(opp => {
+    // Calculate matching keywords
+    const matches = opp.keywords.filter(kw => cleanSkills.includes(kw));
+    const matchCount = matches.length;
+
+    // Calculate match score dynamically
+    let matchScore = 65 + Math.min(matchCount * 10, 30);
+    
+    // Boost score if career goal matches category
+    if (goal.includes('AI') && opp.keywords.includes('python')) matchScore += 4;
+    if (goal.includes('Frontend') && opp.keywords.includes('react')) matchScore += 5;
+    
+    matchScore = Math.min(matchScore, 98);
+
+    // Formulate a dynamic recommendation reason
+    let reason = "";
+    if (matchCount > 0) {
+      reason = `Highly recommended because your skills in ${matches.slice(0, 2).join(' and ')} closely match this opportunity.`;
+    } else if (opp.difficulty === 'Beginner') {
+      reason = `Recommended as an entry-level pathway to build up your core STEM qualifications in ${opp.category}.`;
+    } else {
+      reason = `Recommended to expand your STEM profile and prepare for ${goal} placements.`;
+    }
+
+    return {
+      id: opp.id,
+      title: opp.title,
+      organization: opp.organization,
+      category: opp.category,
+      difficulty: opp.difficulty,
+      locationType: opp.locationType,
+      deadlineDays: opp.deadlineDays,
+      eligibility: opp.eligibility,
+      description: opp.description,
+      applyLink: opp.applyLink,
+      matchScore,
+      reason,
+      trendingBadge: opp.trendingBadge
+    };
+  });
+
+  // Filter based on career relevance
+  // Sort scored list so that the highest match score appears first
+  return scoredOpportunities.sort((a, b) => b.matchScore - a.matchScore);
+};
+

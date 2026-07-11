@@ -6,16 +6,11 @@
 
 Empowering women through AI-driven career guidance, personalized learning roadmaps, interview preparation, and opportunity discovery.
 
-<br>
-
-[![Hackathon](https://img.shields.io/badge/Hackathon-Vibe2Vision%202026-8B5CF6?style=for-the-badge)](https://unstop.com/)
-![Modules](https://img.shields.io/badge/Modules-5%2F5-success?style=for-the-badge)
-![Visitors](https://komarev.com/ghpvc/?username=sanket1035&style=for-the-badge)
-![Status](https://img.shields.io/badge/Status-Production%20Ready-success?style=for-the-badge)
-![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=white)
-![Firebase](https://img.shields.io/badge/Firebase-Enabled-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)
-![Gemini](https://img.shields.io/badge/Gemini-AI-4285F4?style=for-the-badge&logo=google&logoColor=white)
-![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
+![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react)
+![Firebase](https://img.shields.io/badge/Firebase-Enabled-FFCA28?style=for-the-badge&logo=firebase)
+![Gemini](https://img.shields.io/badge/Google-Gemini-blue?style=for-the-badge)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3-06B6D4?style=for-the-badge&logo=tailwindcss)
+![Vercel](https://img.shields.io/badge/Deployment-Vercel-black?style=for-the-badge&logo=vercel)
 ![License](https://img.shields.io/badge/License-MIT-success?style=for-the-badge)
 
 </div>
@@ -24,96 +19,93 @@ Empowering women through AI-driven career guidance, personalized learning roadma
 
 # Overview
 
-**SheRise AI** is an AI-powered Career Intelligence Platform built to empower women in STEM through personalized career guidance, intelligent skill analysis, interview preparation, opportunity discovery, and structured career planning.
+SheRise AI is an AI-powered career development platform designed to help women in STEM build successful careers through intelligent guidance and personalized recommendations.
 
-Rather than relying on multiple disconnected platforms, SheRise AI provides an integrated AI-powered ecosystem that helps users understand their current profile, identify skill gaps, prepare for interviews, discover relevant opportunities, and continuously track career growth.
+The platform combines Generative AI, resume analysis, career planning, opportunity discovery, interview preparation, and progress tracking into a single modern web application.
 
-Developed for **Vibe2Vision 2026**, the platform aligns with the **ElevateHer** theme by combining Artificial Intelligence with career empowerment.
+Instead of using multiple disconnected career platforms, users receive an end-to-end AI mentor that continuously guides their learning and career journey.
 
 ---
 
 # Problem Statement
 
-Students and early professionals often struggle with fragmented career guidance.
+Many students struggle with:
 
-Current platforms generally focus on only one aspect of career development such as resume analysis, interview preparation, or course recommendations.
+- Lack of personalized career guidance
+- Unclear learning roadmap
+- Resume optimization
+- Interview preparation
+- Discovering internships and scholarships
+- Tracking career progress
 
-Women entering STEM frequently encounter additional barriers including limited mentorship, scattered opportunities, unclear career planning, and lack of personalized guidance.
-
-SheRise AI addresses these challenges through one unified AI-powered platform.
+Women entering STEM often face additional barriers including limited mentorship, fragmented resources, and reduced access to opportunities.
 
 ---
 
 # Solution
 
-SheRise AI functions as an intelligent career companion.
+SheRise AI provides an intelligent AI career mentor capable of:
 
-The platform analyzes the user's profile, skills, career goals, and resume to generate personalized recommendations including:
-
-- Career Readiness Analysis
-- Skill Gap Identification
-- AI Career Roadmaps
-- Interview Preparation
+- Resume Analysis
+- Skill Gap Detection
+- Career Readiness Assessment
+- Personalized Learning Roadmaps
 - Internship Recommendations
 - Scholarship Discovery
-- Learning Resources
+- AI Mock Interviews
 - Career Progress Tracking
+
+Everything is delivered through one centralized platform powered by Google Gemini AI.
 
 ---
 
-# Core Features
+# Features
 
 ## AI Career Intelligence
 
-- Resume Analysis
-- Career Readiness Score
-- Skill Gap Analysis
-- Personalized Career Roadmap
-- Career Comparison
+- Resume Upload
+- Resume Parsing
 - ATS Resume Score
-- AI Career Summary
+- Skill Gap Analysis
+- Career Readiness Score
+- Personalized Career Roadmap
+- Career Summary
+- Learning Recommendations
 
 ---
 
 ## Opportunity Hub
 
-- Internship Discovery
-- Scholarship Recommendations
-- Hackathon Suggestions
-- Open Source Opportunities
-- Certification Recommendations
+- Internships
+- Scholarships
+- Hackathons
+- Open Source Programs
+- Certifications
+- Opportunity Bookmarking
 
 ---
 
 ## AI Interview Coach
 
-- HR Interview Practice
-- Technical Interview Practice
-- AI Feedback
-- Communication Improvement
+- HR Interviews
+- Technical Interviews
+- Behavioral Interviews
+- Aptitude Practice
+- AI Evaluation
 - Confidence Analysis
+- Performance Feedback
 
 ---
 
-## Career Dashboard
+## Dashboard
 
-- Progress Tracking
+- Career Progress
 - Weekly Goals
-- Learning Analytics
-- Career Statistics
-- Roadmap Progress
-
----
-
-# Project Modules
-
-| Module | Description | Status |
-|---------|-------------|--------|
-| Module 1 | Authentication & User Management | Completed |
-| Module 2 | AI Career Intelligence | Completed |
-| Module 3 | Opportunity Hub | Completed |
-| Module 4 | AI Interview Coach | Completed |
-| Module 5 | Career Dashboard & Progress Tracker | Completed |
+- Analytics
+- Learning Progress
+- Saved Opportunities
+- Milestones
+- Career Insights
 
 ---
 
@@ -126,29 +118,59 @@ The platform analyzes the user's profile, skills, career goals, and resume to ge
 | Backend | Firebase |
 | Authentication | Firebase Authentication |
 | Database | Cloud Firestore |
-| Artificial Intelligence | Google Gemini API |
+| AI | Google Gemini API |
 | Charts | Recharts |
-| Animation | Framer Motion |
+| Animations | Framer Motion |
 | Icons | Lucide React |
 | Hosting | Vercel |
-| Version Control | Git & GitHub |
 
 ---
 
-# Project Structure
+# Architecture
 
-```text
-src/
+```
+                User
+                  │
+                  ▼
+         Authentication
+                  │
+                  ▼
+         Profile Completion
+                  │
+                  ▼
+          Resume Upload
+                  │
+                  ▼
+          Gemini AI Engine
+                  │
+      ┌───────────┼────────────┐
+      ▼           ▼            ▼
+ Resume      Skill Gap     Career Score
+ Analysis     Detection      Analysis
+      │           │            │
+      └───────────┼────────────┘
+                  ▼
+      Personalized Roadmap
+                  │
+      ┌───────────┼────────────┐
+      ▼           ▼            ▼
+ Opportunities Interviews Dashboard
+```
+
+---
+
+# Folder Structure
+
+```
+src
 │
-├── assets/
-├── components/
-├── contexts/
-├── hooks/
-├── layouts/
-├── pages/
-├── services/
-├── utils/
-├── firebase/
+├── assets
+├── components
+├── contexts
+├── hooks
+├── pages
+├── services
+├── utils
 │
 ├── App.jsx
 └── main.jsx
@@ -156,243 +178,15 @@ src/
 
 ---
 
-# System Workflow
-
-```text
-                User Registration
-                       │
-                       ▼
-              User Authentication
-                       │
-                       ▼
-              Profile Completion
-                       │
-                       ▼
-               Resume Upload (PDF)
-                       │
-                       ▼
-          AI Resume & Skill Analysis
-                       │
-      ┌────────────────┼────────────────┐
-      ▼                ▼                ▼
-Career Score     Skill Gap Analysis   Resume Review
-      │                │                │
-      └────────────────┼────────────────┘
-                       ▼
-            Personalized Career Roadmap
-                       │
-      ┌────────────────┼────────────────┐
-      ▼                ▼                ▼
-Opportunity Hub   Interview Coach   Dashboard
-      │                │                │
-      └────────────────┼────────────────┘
-                       ▼
-               Continuous Career Growth
-```
-
----
-
-# Module Architecture
-
-## Module 1 — Authentication & User Management
-
-This module manages secure user authentication and profile creation.
-
-### Features
-
-- Email Authentication
-- Google Authentication
-- Password Recovery
-- User Profile
-- Protected Routes
-- Session Management
-
-### User Information
-
-- Full Name
-- College
-- Degree
-- Branch
-- Graduation Year
-- Skills
-- Career Goal
-
----
-
-## Module 2 — AI Career Intelligence
-
-This is the core module of SheRise AI.
-
-### Functionalities
-
-- Resume Upload
-- Resume Parsing
-- Skill Extraction
-- Career Readiness Score
-- Skill Gap Detection
-- AI Career Summary
-- ATS Resume Score
-- Career Comparison
-- Personalized Career Roadmap
-- Recommended Projects
-- Learning Resources
-
----
-
-## Module 3 — Opportunity Hub
-
-This module recommends opportunities based on user profile.
-
-### Categories
-
-- Internships
-- Scholarships
-- Hackathons
-- Open Source Programs
-- Competitions
-- Certifications
-
-Each recommendation includes
-
-- Description
-- Eligibility
-- Deadline
-- Application Link
-- Recommendation Reason
-
----
-
-## Module 4 — AI Interview Coach
-
-Provides AI-assisted interview preparation.
-
-### Features
-
-- HR Interview Questions
-- Technical Questions
-- AI Feedback
-- Communication Tips
-- Confidence Score
-- Improvement Suggestions
-
----
-
-## Module 5 — Career Dashboard
-
-Central dashboard for tracking overall progress.
-
-### Dashboard Components
-
-- Career Readiness
-- Weekly Goals
-- Learning Progress
-- Roadmap Progress
-- Recent Activities
-- Saved Opportunities
-- Analytics
-
----
-
-# User Journey
-
-```text
-Landing Page
-
-↓
-
-Login / Signup
-
-↓
-
-Create Profile
-
-↓
-
-Upload Resume
-
-↓
-
-AI Analysis
-
-↓
-
-Career Readiness Score
-
-↓
-
-Skill Gap Analysis
-
-↓
-
-Career Roadmap
-
-↓
-
-Recommended Opportunities
-
-↓
-
-Interview Practice
-
-↓
-
-Dashboard
-
-↓
-
-Continuous Progress Tracking
-```
-
----
-
-# Design Philosophy
-
-SheRise AI follows a clean, premium and modern design language.
-
-## Design Principles
-
-- Minimal Interface
-- Soft Color Palette
-- Glassmorphism
-- Rounded Components
-- Smooth Animations
-- Responsive Layout
-- Accessibility First
-- Consistent Spacing
-
----
-
-# Color Palette
-
-| Purpose | Color |
-|----------|--------|
-| Primary | #5B4B8A |
-| Secondary | #D6C5F2 |
-| Background | #FDF7F0 |
-| Accent | #F8B6A3 |
-| Surface | #FFFFFF |
-| Text | #2E2E2E |
-
----
-
-# Typography
-
-| Usage | Font |
-|--------|------|
-| Heading | Playfair Display |
-| Body | Inter |
-
----
-
 # Installation
 
-Clone the repository
+Clone repository
 
 ```bash
 git clone https://github.com/sanket1035/YuktiNexus-v2v.git
 ```
 
-Move into the project
+Move inside
 
 ```bash
 cd YuktiNexus-v2v
@@ -404,13 +198,13 @@ Install dependencies
 npm install
 ```
 
-Run development server
+Run locally
 
 ```bash
 npm run dev
 ```
 
-Production build
+Production Build
 
 ```bash
 npm run build
@@ -440,197 +234,79 @@ VITE_GEMINI_API_KEY=
 
 ---
 
+# Deployment
+
+The project can be deployed on:
+
+- Vercel
+- Netlify
+- Firebase Hosting
+
+Production deployment is configured for Vercel.
+
+---
+
 # Screenshots
 
-Screenshots will be added after project completion.
+Add screenshots of:
+
+- Landing Page
+- Login
+- Dashboard
+- Career Intelligence
+- Opportunity Hub
+- Interview Coach
+- Career Analytics
 
 ---
 
-# AI Workflow
+# Future Enhancements
 
-```text
-                User Profile
-                     │
-                     ▼
-              Resume Upload
-                     │
-                     ▼
-          Resume Parsing Engine
-                     │
-                     ▼
-            Skill Extraction Layer
-                     │
-                     ▼
-             Gemini AI Processing
-                     │
- ┌───────────────────┼───────────────────┐
- ▼                   ▼                   ▼
-Career Score     Skill Gap Analysis   Resume Review
- │                   │                   │
- └───────────────────┼───────────────────┘
-                     ▼
-         Personalized Career Roadmap
-                     │
- ┌───────────────────┼────────────────────┐
- ▼                   ▼                    ▼
-Projects       Learning Resources   Opportunities
-                     │
-                     ▼
-            Interview Preparation
-                     │
-                     ▼
-            Career Progress Tracker
-```
-
----
-
-# Folder Structure
-
-```text
-src/
-
-├── assets/
-│
-├── components/
-│   ├── common/
-│   ├── dashboard/
-│   ├── interview/
-│   ├── opportunity/
-│   └── career/
-│
-├── contexts/
-│
-├── firebase/
-│
-├── hooks/
-│
-├── layouts/
-│
-├── pages/
-│   ├── Landing/
-│   ├── Authentication/
-│   ├── Dashboard/
-│   ├── CareerIntelligence/
-│   ├── OpportunityHub/
-│   ├── InterviewCoach/
-│   └── Profile/
-│
-├── services/
-│
-├── utils/
-│
-├── App.jsx
-│
-└── main.jsx
-```
-
----
-
-# Project Goals
-
-The primary objective of SheRise AI is to provide a centralized AI-powered platform that enables women to:
-
-- Understand their career readiness.
-- Identify missing skills.
-- Receive personalized learning recommendations.
-- Discover internships and scholarships.
-- Prepare for interviews.
-- Track career growth continuously.
-
----
-
-# Future Scope
-
-The current version represents the MVP developed during the hackathon.
-
-Future enhancements include:
-
-- AI Voice Career Mentor
-- ATS Resume Optimization
-- LinkedIn Profile Analysis
+- Voice AI Career Mentor
 - GitHub Portfolio Analysis
+- LinkedIn Analysis
 - AI Portfolio Builder
 - Mentor Matching
-- Community Discussions
-- Job Application Tracker
+- Coding Interview Simulator
 - AI Salary Prediction
-- Personalized Notifications
-- Resume Version Management
-- Company Readiness Analyzer
-- Mock Coding Interviews
-- AI Networking Assistant
+- Job Application Tracker
+- Community Features
 
 ---
 
-# Performance Goals
+# Contributors
 
-The application is designed to provide:
-
-- Fast page rendering
-- Responsive layouts
-- Reusable components
-- Scalable architecture
-- Clean state management
-- Modern UI/UX
-- Maintainable codebase
+| Name | Role |
+|------|------|
+| Sanket Chaudhari | Full Stack Development • AI Integration |
+| Purva Chopade | Frontend Development • UI/UX |
 
 ---
 
-# Team YuktiNexus
+# Repository
 
-| Name | Role | GitHub |
-|------|------|--------|
-| **Sanket Chaudhari** | Project Lead • AI Integration • Full Stack Development | [@sanket1035](https://github.com/sanket1035) |
-| **Purva Chopade** | Frontend Development • UI/UX Design • Documentation • Testing | [@purvachopade1665](https://github.com/purvachopade1665) |
+**GitHub**
 
----
-
-# Repository Information
-
-| Item | Value |
-|-------|-------|
-| Project Name | SheRise AI |
-| Team Name | YuktiNexus |
-| Event | Vibe2Vision 2026 |
-| Repository | YuktiNexus-v2v |
-| License | MIT |
+https://github.com/sanket1035/YuktiNexus-v2v
 
 ---
 
-# Contributing
+# Live Demo
 
-Contributions during the hackathon are limited to registered team members.
-
-Development follows a modular architecture to ensure scalability and maintainability.
-
-Every feature is developed independently before integration into the main branch.
+https://yukti-nexus.vercel.app/
 
 ---
 
-# Development Roadmap
+# Built With
 
-| Module | Progress |
-|----------|----------|
-| Authentication | Complete |
-| AI Career Intelligence | Complete |
-| Opportunity Hub | Complete |
-| AI Interview Coach | Complete |
-| Career Dashboard | Complete |
-
----
-
-# Development Principles
-
-The project follows the following principles:
-
-- Component-Based Architecture
-- Responsive Design
-- Clean Code Practices
-- AI-First Development
-- Accessibility
-- Scalability
-- Modular Development
-- Maintainability
+- React.js
+- Tailwind CSS
+- Firebase
+- Google Gemini AI
+- Framer Motion
+- Recharts
+- Lucide React
+- Vercel
 
 ---
 
@@ -638,164 +314,14 @@ The project follows the following principles:
 
 This project is licensed under the MIT License.
 
-See the LICENSE file for more information.
-
----
-
-# Built With
-
-| Technology | Purpose |
-|------------|---------|
-| React.js | Frontend Development |
-| Tailwind CSS | UI Styling |
-| Firebase | Backend & Authentication |
-| Cloud Firestore | Database |
-| Google Gemini API | AI Intelligence |
-| Recharts | Data Visualization |
-| Framer Motion | Animations |
-| Lucide React | Icons |
-| Vercel | Deployment |
-| GitHub | Version Control |
-
----
-
-# Repository Statistics
-
-<div align="center">
-
-![GitHub last commit](https://img.shields.io/github/last-commit/sanket1035/YuktiNexus-v2v?style=for-the-badge)
-
-![GitHub repo size](https://img.shields.io/github/repo-size/sanket1035/YuktiNexus-v2v?style=for-the-badge)
-
-![GitHub language count](https://img.shields.io/github/languages/count/sanket1035/YuktiNexus-v2v?style=for-the-badge)
-
-![GitHub top language](https://img.shields.io/github/languages/top/sanket1035/YuktiNexus-v2v?style=for-the-badge)
-
-</div>
-
----
-
-# Project Highlights
-
-- AI-powered Career Intelligence Platform
-- Personalized Career Readiness Analysis
-- Resume Intelligence Engine
-- AI Skill Gap Detection
-- Career Roadmap Generator
-- Opportunity Recommendation System
-- AI Interview Coach
-- Modular Architecture
-- Responsive User Interface
-- Firebase Authentication
-- Gemini AI Integration
-- Modern React Architecture
-
----
-
-# Current Progress
-
-| Component | Status |
-|-----------|--------|
-| Landing Page | Complete |
-| Authentication | Complete |
-| User Profile | Complete |
-| Career Intelligence | Complete |
-| Resume Analysis | Complete |
-| Career Readiness Score | Complete |
-| Skill Gap Analysis | Complete |
-| Career Roadmap | Complete |
-| Opportunity Hub | Complete |
-| Interview Coach | Complete |
-| Career Dashboard | Complete |
-
----
-
-# Acknowledgements
-
-This project was developed as part of **Vibe2Vision 2026**, organized by the IEEE Women in Engineering (WIE) Chapter, VSSUT Student Branch.
-
-We acknowledge the organizers, mentors, judges, and the open-source community for providing the platform, guidance, and technologies that made this project possible.
-
----
-
-# Contact
-
-## Sanket Chaudhari
-
-GitHub
-
-https://github.com/sanket1035
-
----
-
-## Purva Chopade
-
-GitHub
-
-https://github.com/purvachopade1665
-
----
-
-# Repository
-
-```text
-Repository Name
-
-YuktiNexus-v2v
-```
-
----
-
-# Branch Strategy
-
-```text
-main
-
-development
-
-feature/authentication
-
-feature/career-intelligence
-
-feature/opportunity-hub
-
-feature/interview-coach
-
-feature/dashboard
-```
-
----
-
-# Version
-
-Current Version
-
-```text
-v0.2.0-beta
-```
-
----
-
-# Project Vision
-
-SheRise AI aims to become a comprehensive AI-powered career ecosystem that empowers women to confidently navigate their professional journey through intelligent guidance, structured learning, personalized recommendations, and continuous progress tracking.
-
-The platform is designed to simplify career planning while encouraging skill development, employability, and long-term professional growth.
-
 ---
 
 <div align="center">
 
-## Team YuktiNexus
+## SheRise AI
 
-**SheRise AI**
+**Empowering Women in STEM through Artificial Intelligence**
 
-AI-Powered Career Intelligence Platform for Women in STEM
-
-Developed for **Vibe2Vision 2026**
-
----
-
-*"Empowering careers through intelligence, guidance, and opportunity."*
+Made with ❤️ using React, Firebase and Google Gemini AI.
 
 </div>
